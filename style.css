@@ -1,0 +1,62 @@
+.navi {padding-top: 5px;
+    display: flex; 
+    flex-wrap: wrap-reverse;
+flex-direction: row;
+justify-content: flex-end;
+align-content: space-between;
+}
+
+.navi {margin-left: 25px;}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+
+
+  
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+  html {
+      font-size: 17px;
+      text-align: center;
+  }
+  
+  body {
+      min-height: 100vh;
+      
+      margin: 0 auto;
+      
+  }
+  
+  th, td, caption {
+      border: 1px solid #333;
+      font-family: 'Courier New', Courier, monospace;
+      border-collapse: separate;
+      padding: 0.5rem;
+  } 
+
+  nav ul {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  /* nav ul li {
+      display: inline;
+      margin: 0 10px; 
+  } */
+  
+  nav ul li a {
+      text-decoration: none;
+      display: inline-block;
+      line-height: 2; /* Adjust this value as needed to center the text and dots */
+  color: black;
+  }
+  
+  
+  figure{opacity: 0.5;}
