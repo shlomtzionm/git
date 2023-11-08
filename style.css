@@ -38,6 +38,19 @@
    
   }
   
+
+#header{
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 30px;
+  padding-top: 30px;
+  margin-top: -10px;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.head{margin-left: 20px;}
+
   
   table {
       border-collapse: collapse;
@@ -72,4 +85,4 @@
         padding: 0.5rem;
     } 
   
-    figure{opacity: 0.5;}
+    img{opacity: 0.5;}
