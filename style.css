@@ -49,7 +49,7 @@
   justify-content: space-around;
 }
 
-.head{margin-left: 20px;}
+h1{align-self: flex-start;}
 
   
   table {
