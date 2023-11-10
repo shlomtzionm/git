@@ -1,3 +1,5 @@
+
+
 #flexbox {
     display: flex;
     flex-wrap: nowrap;
@@ -34,22 +36,18 @@
     height: 35px; /* Increase the height */
     background-color: #e1ccb17d;
     border-radius: 25px;
-    border-bottom:2px solid rgb(108 76 32);
-   
+ 
   }
   
 
-#header{
+#images{
   display: flex;
-  flex-direction: row-reverse;
-  padding: 30px;
-  padding-top: 30px;
-  margin-top: -10px;
-  align-items: baseline;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+ margin-bottom: -9px;
 }
 
-h1{align-self: flex-start;}
+.icon{display: flex;
+  justify-content: end;}
 
   
   table {
@@ -71,12 +69,7 @@ h1{align-self: flex-start;}
         text-align: center;
     }
     
-    body {
-        min-height: 100vh;
-        
-        margin: 0 auto;
-        
-    }
+
     
     th, td, caption {
         border: 1px solid #333;
