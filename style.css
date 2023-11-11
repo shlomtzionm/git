@@ -1,81 +1,89 @@
-
-
-#flexbox {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px;
-    padding-left: 0px;
-  }
-  
-  .li {
-    width: 100px;
-    height: 25px;
-    margin: 10px;
-    padding-top:10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-  }
-  
-  #flexbox .li a {
-    color: black;
-    text-decoration: none;
-  }
-  
-  nav {
-    border: 1px solid #ebe1d4;
-    background-color: #ebe1d4;
-    border-radius: 3px;
-  }
-  
-  li:hover {
-    width: 100px; /* Increase the width */
-    height: 35px; /* Increase the height */
-    background-color: #e1ccb17d;
-    border-radius: 25px;
- 
-  }
-  
-
-#images{
+#flexx {
   display: flex;
   flex-wrap: nowrap;
- margin-bottom: -9px;
+  justify-content: space-between;
 }
 
-.icon{display: flex;
-  justify-content: end;}
+#flexbox {display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
-  
-  table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-  
-  
-  
-    
-  
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-    html {
-        font-size: 17px;
-        text-align: center;
-    }
-    
+}
 
-    
-    th, td, caption {
-        border: 1px solid #333;
-        font-family: 'Courier New', Courier, monospace;
-        border-collapse: separate;
-        padding: 0.5rem;
-    } 
-  
-    img{opacity: 0.5;}
+#flexbox2 {display: flex;
+  justify-content: flex-end;
+align-items: center;
+}
+.icon {
+  width: 30px;
+  height: 25px;
+  margin: 2px;
+  padding-top: 10px;
+}
+
+
+
+.link {
+  width: 100px;
+  height: 25px;
+  margin: 10px;
+  padding-top: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+#flexbox .link a {
+  color: black;
+  text-decoration: none;
+}
+
+nav {
+  border: 1px solid #ebe1d4;
+  background-color: #ebe1d4;
+  border-radius: 3px;
+}
+
+li:hover {
+  width: 100px;
+  height: 35px;
+  background-color: #e1ccb17d;
+  border-radius: 25px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#images {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: -9px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+html {
+  font-size: 17px;
+  text-align: center;
+}
+
+th,
+td,
+caption {
+  border: 1px solid #333;
+  font-family: 'Courier New', Courier, monospace;
+  border-collapse: separate;
+  padding: 0.5rem;
+}
+
+img {
+  opacity: 0.5;
+}
