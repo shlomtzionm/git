@@ -10,7 +10,7 @@
 
 }
 
-#flexbox2 {display: flex;
+#flexbox2 {
   justify-content: flex-end;
 align-items: center;
 }
