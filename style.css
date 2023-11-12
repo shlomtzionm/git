@@ -13,7 +13,7 @@ height: 100%;}
 
 }
 
-#flexbox2 {
+#flexbox2 {display: flex;
   justify-content: flex-end;
 align-items: center;
 }
