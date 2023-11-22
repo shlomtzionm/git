@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-22T12:37:25.914Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="g6VpjfetiuVut4tmPAA-" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-22T20:19:58.330Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="AQ4aBDIo6TRqCgyQw_-M" version="22.1.3" type="github">
   <diagram name="‫עמוד-1‬" id="08D_mTUg6jLOTShBw8Z5">
-    <mxGraphModel dx="1687" dy="878" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="750" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -73,7 +73,7 @@
           <mxGeometry x="270" y="1020" width="110" height="60" as="geometry" />
         </mxCell>
         <mxCell id="-qngtt7ib1RV9Wm__Yh7-28" value="num3 * 10" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" parent="1" vertex="1">
-          <mxGeometry x="265" y="1150" width="120" height="80" as="geometry" />
+          <mxGeometry x="265" y="1169" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="-qngtt7ib1RV9Wm__Yh7-31" value="&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;var num1 = prompt(&quot;Enter first number&quot;);&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;var num2 = prompt(&quot;Enter second number&quot;);&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;if (num1 &amp;lt; 0) {num1 *= -1;}&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;if (num2 &amp;lt; 0) {num2&amp;nbsp; *= -1;}&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;console.log(num1 + num2)&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;var newNum = num1 * num2;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;if (newNum % 2 === 0) {&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;console.log(&quot;even&quot;)} else {&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 16px;&quot;&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;var num3 = prompt(&quot;Enter third number&quot;); console.log(num3 * 10);}&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;strokeWidth=3;" parent="1" vertex="1">
           <mxGeometry x="240" y="373" width="490" height="204" as="geometry" />
