@@ -1,9 +1,72 @@
-<mxfile host="app.diagrams.net" modified="2023-11-22T17:22:32.480Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" version="22.1.3" etag="pxXrFooJHqUH4XR5wq6J" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-22T17:59:29.820Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="qUnM5pc4qPAeUfGhhtHP" version="22.1.3" type="github">
   <diagram name="‫עמוד-1‬" id="b3e_gvgMo6vx1o-5YISL">
-    <mxGraphModel>
+    <mxGraphModel dx="718" dy="740" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="d4xMJePIRtDY04kefQE2-1" value="start/end" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-2" value="input" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="234" y="40" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-3" value="output" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="40" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-4" value="while" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="65" y="150" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-5" value="foorloop&lt;br&gt;" style="shape=sumEllipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="254" y="150" width="100" height="87.5" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-6" value="if" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="30" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d4xMJePIRtDY04kefQE2-7" target="d4xMJePIRtDY04kefQE2-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-7" value="start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="326" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d4xMJePIRtDY04kefQE2-8" target="d4xMJePIRtDY04kefQE2-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-8" value="num1&lt;br&gt;nuum2&lt;br&gt;num3" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="74" y="435" width="130" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d4xMJePIRtDY04kefQE2-10" target="d4xMJePIRtDY04kefQE2-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-10" value="sum = num1+num2+num3&lt;br&gt;&lt;br&gt;avreg = sum / 3" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="556" width="120" height="102.5" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-12" value="end" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="79" y="696" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-15" value="&lt;div&gt;&amp;nbsp; const num1 = parseInt(prompt(&quot;Enter first num:&quot;)) ; console.log(num1);&lt;/div&gt;&lt;div&gt;const num2 = parseInt(prompt(&quot;Enter second num:&quot;)) ;&amp;nbsp; console.log(num2);&lt;/div&gt;&lt;div&gt;const num3 = parseInt(prompt(&quot;Enter third num:&quot;)) ;&amp;nbsp; console.log(num3);&lt;/div&gt;&lt;div style=&quot;&quot;&gt;const sum = num1 + num2 + num3 ;&amp;nbsp; console.log(sum);&lt;/div&gt;&lt;div&gt;const average = sum / 3 ;&amp;nbsp;&lt;/div&gt;&lt;div&gt;console.log(average) ;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="267" y="326" width="415" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d4xMJePIRtDY04kefQE2-16" target="d4xMJePIRtDY04kefQE2-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-16" value="start" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="91" y="842" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d4xMJePIRtDY04kefQE2-19" target="d4xMJePIRtDY04kefQE2-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-19" value="lenth&amp;nbsp;&lt;br&gt;width&amp;nbsp;&lt;br&gt;" style="shape=card;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="104" y="967" width="95" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-21" value="perimeter = lenth*2 + width*2&lt;br&gt;&amp;nbsp;area = lenth * width" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="91.5" y="1084" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-23" value="const lenth = 3 ;&lt;br&gt;const width = 4 ;&lt;br&gt;const perimeter = lenth*2 + width*2 ;&lt;br&gt;const area = lenth * eidth ;&lt;br&gt;console.log(perimeter) ;&lt;br&gt;console.log(area) ;&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="267" y="842" width="211" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="d4xMJePIRtDY04kefQE2-25" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="132" y="1177" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
