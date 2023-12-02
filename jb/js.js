@@ -105,4 +105,40 @@ console.log(array2)
 
 console.log(array3)
 
-//
+//question 6
+let array = []
+
+for (i=0; i<10; i++) {
+    let num = +prompt("enter a number:");
+    array.push(num);
+}
+console.log(array);
+array = array.reverse();
+console.log(array)
+
+
+//question 7
+let array = []
+let numbers = []
+let strings = []
+let array2 = []
+
+for (i=0; i<10; i++) {
+    let num = +prompt("enter a number:")
+    array.push(num)
+}
+console.log(array)
+
+for (i=0; i<array.length; i++) {
+    if (typeof array[i] === 'number' ) {
+        numbers.push(array[i])
+    } else if (typeof array[i] === 'string') {
+        strings.push(array[i])
+    } else {
+        array2.push(array[i])
+    }
+}
+
+console.log(numbers)
+console.log(strings)
+console.log(array2)
