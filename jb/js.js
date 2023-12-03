@@ -142,3 +142,10 @@ for (i=0; i<array.length; i++) {
 console.log(numbers)
 console.log(strings)
 console.log(array2)
+
+
+//question 8
+let array = []
+let array2 = []
+
+for (i = 0)
