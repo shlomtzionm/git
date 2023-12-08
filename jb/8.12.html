@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="8.12.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            flex-wrap:wrap ;
+            flex-direction: column;
+            font-family: monospace;
+            margin: 100px;
+
+        }
+    .secondP{
+        display: none;
+        
+    }  
+    
+    </style>
+</head>
+
+<body>
+    <h1 class="h1">hi you!</h1>
+
+    <p>what is your name?</p>
+    <input type="text" class="name">
+    <button onclick="hiYou()">click here</button>
+    <p class="secondP">nice to meet you </p>
+    
+    <p class="">please choose your favorite color: </p>
+    <select class="color" onclick="changeColor()">
+        <option value="">selection</option>
+        <option value="#79C770">green</option>
+        <option value="#70AEC7">blue</option>
+        <option value="#C77070">red</option>
+    </select>
+
+ <button type="button" onclick="darkmode()" class="darkmode"> 
+darkmode
+</button>
+</body>
+
+
+</html>
+
