@@ -39,4 +39,11 @@ function darkmode(){
     
 
 }
-
+let j =0
+function changePragraph(){
+    j=j%6
+ let para = document.querySelector(`.change_${j}`)
+let input = document.querySelector('.input').value
+para.textContent = input
+j++
+}
