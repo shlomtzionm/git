@@ -1,6 +1,6 @@
 body{
-    background-color: rgba(0, 0, 0, 0.899);
-    color: #fff;
+    background-color: rgb(236, 236, 236);
+    color: #000000;
 }
 .container {
     display: flex;
@@ -9,7 +9,7 @@ body{
     border: solid rgb(92, 88, 88) 0.1px;
     padding: 20px;
     width: fit-content;
-    margin: 50px auto auto auto;
+    margin: 150px auto auto auto;
     border-radius: 10px;
     min-height: 400px;
     position: relative;
@@ -34,7 +34,7 @@ body{
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
-    background-color: rgb(22, 22, 50);
+    background-color: transparent;
     border: solid rgb(92, 88, 88) 0.1px;
   }
   
@@ -42,23 +42,25 @@ body{
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: transparent;
-    color: #fff;
+    background-color: rgba(190, 179, 163, 0.699);
+    color: #000000;
     border: #fff;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .logIn,
-  .sginUp {
-    text-align: center; /* Center the inputs */
+  .signUp
+  {
+    text-align: center; 
   }
   
   .logIn {
     display: block;  
 }
   
-  .sginUp {
+  .signUp,
+  .forgat {
     display: none;
   }
   
