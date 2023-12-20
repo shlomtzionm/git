@@ -1,28 +1,51 @@
 let userName
 let userPassword
+let logInd
+let signUpd
+let forgatd
 
 
 
-
-
-function blockOrNone() {
+function blockOrNone(location, not, not1) {
+    console.log(location, not , not1)
     let logIn = document.querySelector('.logIn');
     let signUp = document.querySelector('.signUp');
+    let forgat = document.querySelector('.forgat');
 
-    let logInDisplay = window.getComputedStyle(logIn).display;
-    let signUpDisplay = window.getComputedStyle(signUp).display;
+    forgatd = window.getComputedStyle(forgat).display;
+    logInd = window.getComputedStyle(logIn).display;
+    signUpd = window.getComputedStyle(signUp).display;
 
-    if (logInDisplay === "block" && signUpDisplay === "none") {
-        logIn.style.display = "none";
-        signUp.style.display = "block";
-        let newAccount = document.querySelector('.goToSignUp');
-        newAccount.style.display = "none"
-
-    } else {
-        logIn.style.display = "block";
-        signUp.style.display = "none";
-    }
+    location.style.display = "block";
+    not.style.display = "none";
+    not1.style.display = "none";
 }
+
+
+
+// blockOrNone(forgat, logIn, signUp)
+// blockOrNone(signUp, logIn, forgat)
+// blockOrNone(logIn, signUp, forgat)
+
+
+// function blockOrNone() {
+//     let logIn = document.querySelector('.logIn');
+//     let signUp = document.querySelector('.signUp');
+
+//     let logInDisplay = window.getComputedStyle(logIn).display;
+//     let signUpDisplay = window.getComputedStyle(signUp).display;
+
+//     if (logInDisplay === "block" && signUpDisplay === "none") {
+//         logIn.style.display = "none";
+//         signUp.style.display = "block";
+//         let newAccount = document.querySelector('.goToSignUp');
+//         newAccount.style.display = "none"
+
+//     } else {
+//         logIn.style.display = "block";
+//         signUp.style.display = "none";
+//     }
+// }
 
 
 function createNewAccount() {
@@ -40,8 +63,7 @@ function disableButton() {
     document.querySelector('.create').disabled = true
 }
 
-
-function logIn() {
+function logInfn() {
     let isUserName = document.querySelector('.userName').value
     let isUserPassword = document.querySelector('.password').value
 
@@ -68,16 +90,16 @@ function ifForgat() {
     }
 }
 
-function goToForgat() {
-    let logIn = document.querySelector('.logIn');
-    let signUp = document.querySelector('.signUp');
+// function goToForgat() {
+//     let logIn = document.querySelector('.logIn');
+//     let signUp = document.querySelector('.signUp');
 
-logIn.style.display = "none"
-signUp.style.display = "none"
+// logIn.style.display = "none"
+// signUp.style.display = "none"
 
-let forgat = document.querySelector(".forgat")
-forgat.style.display = "block"
+// let forgat = document.querySelector(".forgat")
+// forgat.style.display = "block"
 
 
 
-}
+// }
