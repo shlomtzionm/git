@@ -2,7 +2,8 @@ let input = document.querySelector('.timer');
 let btnTimer = document.querySelector('.btn-timer');
 let theTimer = document.querySelector('.theTimer');
 
-btnTimer.addEventListener('click', function () {
+input.addEventListener('keypress', function () {
+    if (event.key === "Enter"){
     let inputValue = +input.value;
     theTimer.textContent = inputValue;
 
@@ -11,5 +12,7 @@ btnTimer.addEventListener('click', function () {
         setTimeout(() => {
             theTimer.textContent = i;          
         }, 1000 * (inputValue - i));
-    }
+    }}
 });
+
+document.querySelector('.container').style.animation-duration === input
