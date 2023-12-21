@@ -1,29 +1,40 @@
 let list = []
+let gradeIsHigher = []
+
+
 
 function addToList(){
+    let student = {
+        studentName : "" ,
+        studentGrade : 0
+    }
 
     let theName = document.querySelector('.nameInput').value
-    let grade = document.querySelector('.gradeInput').value
+    let grade = +document.querySelector('.gradeInput').value
    
+student.studentName = theName
+student.studentGrade = grade
 
-    let students = {
-        studentName : "" ,
-        studentGrade : ""
+list.push(student)
+if (student.studentGrade > document.querySelector('.highest').value){
+showList(student)
+}
+}
+
+
+
+function showList(student){
+gradeIsHigher.push(student)
+displayGradeIsHigher()
+}
+
+function displayGradeIsHigher() {
+    let output = "";
+    for (let i = 0; i < gradeIsHigher.length; i++) {
+        output += `${gradeIsHigher[i].studentName}: ${gradeIsHigher[i].studentGrade}`;
+        if (i < gradeIsHigher.length - 1) {
+            output += ', ';
+        }
     }
-students.studentName = theName
-students.studentGrade = grade
-
-list.push(students)
-if (students.studentGrade > document.querySelector('.highest').value){
-showList()
-}
-
-function showList(){
-    let showList = document.querySelector('.list')
-    showList.innerHTML = ""
-
-list.forEach(function(student){
-    showList.textContent += (student.studentName+" "+student.studentGrade )
-})
-}
+    document.querySelector('.gradeIsHigher').textContent = output;
 }
