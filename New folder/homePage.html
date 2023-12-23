@@ -10,36 +10,34 @@
 
 <body>
   <div class="container">
-    <div><em>
+    <div>
         <h1 class="center">welcome</h1>
-      </em></div>
+      </div>
     <img src="הורדה.png" alt="profile pic" class="pic center">
 
     <div class="logIn">
       <input class="userName" placeholder="Enter your user name:">
       <input class="password" type="password" placeholder="Enter your user password:">
       <button class="loginbutton" onclick=" logInfn()">login</button>
+      <button class="isPassword" onclick="blockOrNone(forgot, logIn, signUp)">forgot password?</button>
+      <button class="goToSignUp" onclick="blockOrNone(signUp, forgot, logIn)">dont have an acount?</button>
     </div>
 
     <div class="signUp">
       <input class="inputUserName" placeholder="Choose a user name:">
       <input class="inputPassword" type="password" placeholder="Choose a password:">
       <button class="create" onclick="createNewAccount()">sign Up</button>
-      <button class="backToLogIn" onclick="blockOrNone()">Back to log in</button>
+      <button class="backToLogIn" onclick="blockOrNone(logIn, signUp, forgot)">Back to log in</button>
+      <button class="isPassword" onclick="blockOrNone(forgot, logIn, signUp)">forgot password?</button>
     </div>
-    <div class="forgat">
-      <div><em>
-          <h1 class="center">forgat password?</h1>
-        </em></div>
-      <div>
+    <div class="forgot">
+          <h1 class="center">forgot password?</h1>
         <input type="text" class="ifUserName" placeholder="enter your user name:">
         <p class="thisIsPassword">your password is: </p>
-        <button class="" onclick="ifForgat()">click here to check</button>
-      </div>
+        <button class="" onclick="ifforgot()">click here to check</button>
+        <button class="backToLogIn" onclick="blockOrNone(logIn, signUp, forgot)">Back to log in</button>
     </div>
 
-    <button class="goToSignUp" onclick="blockOrNone()"><em>Create a new acount</em></button>
-    <button class="isPassword" onclick="blockOrNone(forgatd, logInd, signUpd)"><em>forgat password?</em></button>
   </div>
   <script src="js.js"></script>
 </body>
