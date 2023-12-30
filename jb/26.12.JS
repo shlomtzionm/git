@@ -31,6 +31,7 @@ function saveTOlIST(){
   
 function createHtmlLi(item) {
   let itemDiv = document.createElement("li");
+  let classN = itemDiv.classList.add(itemsArray.length)
 
   let textElement = document.createElement("span");
   textElement.innerHTML = item.text;
@@ -40,10 +41,21 @@ function createHtmlLi(item) {
   dateElement.classList.add("date");
   dateElement.innerHTML = item.date;
 
+  let deleteElement = document.createElement('button')
+deleteElement.innerHTML = "delete"
+
+itemDiv.appendChild(deleteElement)
   itemDiv.appendChild(textElement);
   itemDiv.appendChild(dateElement);
   theList.appendChild(itemDiv);
-}
+  
+  
+  deleteElement.addEventListener('click',function(){
+  itemsArray.splice(classN,1)})
+
+  return itemsArray
+  }
+
 
 function saveAtLocalStorage(itemsArray) {
   localStorage["item"] = JSON.stringify(itemsArray);
@@ -82,3 +94,5 @@ function formatDateTime() {
     lastItem.innerHTML = moment(d).format('DD/MM/YY HH:mm:ss');
 return lastItem  
 }
+
+
