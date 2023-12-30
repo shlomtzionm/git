@@ -1,40 +1,46 @@
 let textInput = document.querySelector(".textInput");
 let dateInput = document.querySelector(".dateInput");
+let numberOfItems = document.querySelector('.number')
 let theList = document.querySelector(".theList");
 let save_btn = document.querySelector(".save-btn");
-
+let lastItem = document.querySelector('.lastItem')
+let clear = document.querySelector('.clearList')
 let itemsArray = getLocalStorage();
+
 init();
 
-save_btn.addEventListener("click", function () {
-  let text = textInput.value;
-  let date = dateInput.value;
-  let item = {
-    text,
-    date,
-  };
-  itemsArray.push(item);
-  createHtmlLi(item);
-  saveAtLocalStorage(itemsArray);
+save_btn.addEventListener("click",saveTOlIST)
+clear.addEventListener('click',clearList)
 
-  textInput.value = "";
-  dateInput.value = "";
-  countElement ()
-
-});
-
+function saveTOlIST(){
+    let text = textInput.value;
+    let date = dateInput.value;
+    let item = {
+      text,
+      date,
+    };
+    itemsArray.push(item);
+    createHtmlLi(item);
+    saveAtLocalStorage(itemsArray);
+  
+    textInput.value = "";
+    dateInput.value = "";
+    countElement ()
+    formatDateTime()
+}    
+  
 function createHtmlLi(item) {
   let itemDiv = document.createElement("li");
 
   let textElement = document.createElement("span");
   textElement.innerHTML = item.text;
-  itemDiv.appendChild(textElement);
+  
 
   let dateElement = document.createElement("span");
   dateElement.classList.add("date");
   dateElement.innerHTML = item.date;
 
-
+  itemDiv.appendChild(textElement);
   itemDiv.appendChild(dateElement);
   theList.appendChild(itemDiv);
 }
@@ -55,23 +61,24 @@ function init() {
     itemsArray.forEach((element) => {
       createHtmlLi(element);
     });
-  }
+countElement()  
+}
 }
 
-let clear = document.querySelector('.clearList')
-clear.addEventListener('click', function(){
+function clearList (){
     localStorage.clear()
-    itemsArray = ""
+    itemsArray = []
     theList.innerHTML = ""
+    countElement ()
+}
 
-})
-
-let numberOfItems = document.querySelector('.number')
 function countElement (){
-    let counter = 0 
-itemsArray.forEach(element => {
-    counter++
-});
-    numberOfItems.innerText = counter
+    numberOfItems.innerText = itemsArray.length
 
+}
+
+function formatDateTime() {
+    let d = new Date()
+    lastItem.innerHTML = moment(d).format('DD/MM/YY HH:mm:ss');
+return lastItem  
 }
