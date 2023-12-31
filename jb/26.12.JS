@@ -1,37 +1,66 @@
-let textInput = document.querySelector(".textInput");
-let dateInput = document.querySelector(".dateInput");
-let numberOfItems = document.querySelector('.number')
-let theList = document.querySelector(".theList");
-let save_btn = document.querySelector(".save-btn");
-let lastItem = document.querySelector('.lastItem')
-let clear = document.querySelector('.clearList')
-let itemsArray = getLocalStorage();
+// First List
+let list1 = {
+  textInput: document.querySelector(".textInput"),
+  dateInput: document.querySelector(".dateInput"),
+  numberOfItems: document.querySelector('.number'),
+  theList: document.querySelector(".theList"),
+  saveBtn: document.querySelector(".saveBtn"),
+  lastItem: document.querySelector('.lastItem'),
+  clear: document.querySelector('.clearList'),
+  itemsArray: getLocalStorage("list1"), 
+  key:"list1",
+  counter: 0
+};
 
-init();
+// Second List
+let list2 = {
+  textInput: document.querySelector(".textInput2"),
+  dateInput: document.querySelector(".dateInput2"),
+  numberOfItems: document.querySelector('.number2'),
+  theList: document.querySelector(".theList2"),
+  saveBtn: document.querySelector(".saveBtn2"),
+  lastItem: document.querySelector('.lastItem2'),
+  clear: document.querySelector('.clearList2'),
+  itemsArray: getLocalStorage("list2"), 
+  key:"list2",
+  counter: 0
+};
 
-save_btn.addEventListener("click",saveTOlIST)
-clear.addEventListener('click',clearList)
+list1.saveBtn.addEventListener("click", () => saveTOlIST(list1));
+list2.saveBtn.addEventListener("click", () => saveTOlIST(list2));
 
-function saveTOlIST(){
-    let text = textInput.value;
-    let date = dateInput.value;
+list1.clear.addEventListener('click',() => clearList(list1))
+list2.clear.addEventListener('click',() => clearList(list2))
+
+
+init(list1);
+init(list2);
+
+
+function saveTOlIST(currentList){
+  if(currentList.textInput.value !== "" && currentList.dateInput.value !== ""){
+    let text = currentList.textInput.value;
+    let date = currentList.dateInput.value;
     let item = {
       text,
       date,
     };
-    itemsArray.push(item);
-    createHtmlLi(item);
-    saveAtLocalStorage(itemsArray);
+    currentList.itemsArray.push(item);
+    createHtmlLi(item ,currentList);
+    saveAtLocalStorage(currentList);
   
-    textInput.value = "";
-    dateInput.value = "";
-    countElement ()
-    formatDateTime()
+    currentList.textInput.value = "";
+    currentList.dateInput.value = "";
+    countElement (currentList)
+    formatDateTime(currentList)
 }    
-  
-function createHtmlLi(item) {
+}
+function createHtmlLi(item, currentList) {
+ 
   let itemDiv = document.createElement("li");
-  let classN = itemDiv.classList.add(itemsArray.length)
+  let atribute = currentList.counter++
+  itemDiv.setAttribute("date-counter",atribute)
+   
 
   let textElement = document.createElement("span");
   textElement.innerHTML = item.text;
@@ -44,55 +73,61 @@ function createHtmlLi(item) {
   let deleteElement = document.createElement('button')
 deleteElement.innerHTML = "delete"
 
-itemDiv.appendChild(deleteElement)
+
   itemDiv.appendChild(textElement);
   itemDiv.appendChild(dateElement);
-  theList.appendChild(itemDiv);
+  itemDiv.appendChild(deleteElement)
+  currentList.theList.appendChild(itemDiv);
   
   
   deleteElement.addEventListener('click',function(){
-  itemsArray.splice(classN,1)})
+  currentList.itemsArray.splice(atribute,1)
+itemDiv.remove();
+countElement(currentList)
+saveAtLocalStorage(currentList)
+})
 
-  return itemsArray
+  return currentList.itemsArray
   }
 
 
-function saveAtLocalStorage(itemsArray) {
-  localStorage["item"] = JSON.stringify(itemsArray);
+function saveAtLocalStorage(currentList) {
+  localStorage.setItem(currentList.key ,JSON.stringify(currentList.itemsArray));
 }
 
-function getLocalStorage() {
-  if (!localStorage["item"]) {
+function getLocalStorage(currentList) {
+  if (!localStorage[currentList]) {
     return [];
   }
-  return JSON.parse(localStorage["item"]);
+  return JSON.parse(localStorage[currentList]);
 }
 
-function init() {
-  if (itemsArray.length > 0) {
-    itemsArray.forEach((element) => {
-      createHtmlLi(element);
+function init(currentList) { 
+  if (currentList.itemsArray.length > 0) {
+    currentList.itemsArray.forEach((element) => {
+      createHtmlLi(element, currentList);
     });
-countElement()  
+countElement(currentList) 
+  
 }
 }
 
-function clearList (){
-    localStorage.clear()
-    itemsArray = []
-    theList.innerHTML = ""
-    countElement ()
+function clearList (currentList){
+    localStorage.removeItem(currentList.key)
+    currentList.itemsArray = []
+    currentList.theList.innerHTML = ""
+    countElement (currentList)
 }
 
-function countElement (){
-    numberOfItems.innerText = itemsArray.length
+function countElement (currentList){
+   currentList.numberOfItems.innerText = currentList.itemsArray.length
 
 }
 
-function formatDateTime() {
+function formatDateTime(currentList) {
     let d = new Date()
-    lastItem.innerHTML = moment(d).format('DD/MM/YY HH:mm:ss');
-return lastItem  
+    currentList.lastItem.innerHTML = moment(d).format('DD/MM/YY HH:mm:ss');
+return currentList.lastItem  
 }
 
 
