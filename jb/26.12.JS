@@ -33,6 +33,7 @@ list1.clear.addEventListener('click',() => clearList(list1))
 list2.clear.addEventListener('click',() => clearList(list2))
 
 
+
 init(list1);
 init(list2);
 
