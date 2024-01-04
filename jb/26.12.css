@@ -1,0 +1,28 @@
+.body{
+    display: flex;
+flex-wrap: nowrap;
+justify-content: center;
+margin-top: 80px;
+}
+
+.firstList,
+.secondeList{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    margin: 30px;
+    border: solid black 2px;
+    padding: 30px;
+}
+
+hr{
+    margin: 10px;
+}
+
+li{
+    margin-top: 5px;
+}
+
+.date{
+    margin: 0px 15px 0px;
+}
