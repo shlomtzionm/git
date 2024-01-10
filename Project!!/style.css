@@ -1,0 +1,94 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:url(borad.jpeg);
+}
+
+.headline{
+  font-family: 'Times New Roman', Times, serif;
+margin:80px 0px 25px 0px ;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+    width: 400px;
+
+    margin-top: 20px;
+
+    background-image: url(lines.jpeg);
+}
+
+input,
+button{
+    background-color: transparent;
+    border: none;
+}
+
+.taskContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 800px;
+
+   
+}
+
+.taskDiv{
+    background-image: url(ללא\ רקע.png);
+background-size: cover;
+margin: 25px 20px 0px 5px;
+    width: 170px;
+    height: 210px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+ .animation{   animation: fadeIn 1s;
+}
+
+
+    @keyframes fadeIn{
+        0%{opacity: 0;}
+        100%{opacity: 1;}
+    }
+    
+
+
+.text{
+    width:100px ;
+    height: 100px;
+  
+  margin: 22px 10px 0px 10px;
+  
+  
+    background-color: transparent;
+    border: none;
+    resize: none;
+  
+}
+
+.date,
+.time{
+    padding: 0px 0px 5px 15px;
+}
+
+
+.bi{
+    padding: 15px 0px 0px 7px;
+opacity: 0;
+
+}
+
+
+.taskDiv:hover .bi{
+    opacity: 1;
+}
