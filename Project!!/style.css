@@ -15,7 +15,7 @@ margin:80px 0px 25px 0px ;
     flex-direction: column;
     justify-content: space-between;
     height: 150px;
-    width: 400px;
+    width: 700px;
 
     margin-top: 20px;
 
@@ -64,11 +64,9 @@ margin: 25px 20px 0px 5px;
 
 
 .text{
-    width:100px ;
+    width:150px ;
     height: 100px;
-  
-  margin: 22px 10px 0px 10px;
-  
+ margin: 0px 10px 0px 10px;
   
     background-color: transparent;
     border: none;
@@ -83,7 +81,7 @@ margin: 25px 20px 0px 5px;
 
 
 .bi{
-    padding: 15px 0px 0px 7px;
+    padding: 20px 5px 0px 7px;
 opacity: 0;
 
 }
@@ -91,4 +89,21 @@ opacity: 0;
 
 .taskDiv:hover .bi{
     opacity: 1;
+}
+
+.btnStyle{
+  align-self: self-end;
+
+}
+textarea::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(119, 55, 3);
+ 
+}
+
+textarea{
+    outline: none;
 }

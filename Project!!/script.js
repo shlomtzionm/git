@@ -8,11 +8,12 @@ let taskArray = getFromLocalStorage();
 
 
 saveButton.addEventListener("click", function () {
+    if (inputText.value !== "" || inputDate.value !== "" || inputTime.value !== ""){
   collectInputs();
-  printToHTML();
+  printToHTML(taskArray[taskArray.length - 1]);
   saveToLS();
   clearForm()
-});
+}});
 
 clearButton.addEventListener('click', function(){
     clearAll()
@@ -30,11 +31,10 @@ function collectInputs() {
 
 }
 
-function printToHTML() {
-    let lastTask = taskArray[taskArray.length-1]
-createDiv(lastTask.taskText, lastTask.taskDate, lastTask.taskTime)
-
+function printToHTML(task) {
+    createDiv(task.taskText, task.taskDate, task.taskTime);
 }
+
     
 function createDiv(task, date, time){
    let  div = document.createElement("div")
@@ -51,11 +51,12 @@ function createDiv(task, date, time){
    timeDiv.innerHTML = time
 
 
-   let deleteButton = document.createElement('button')
+   let deleteButton = document.createElement('i')
    deleteButton.classList ="bi bi-x"
-   deleteButton.classList.add("deleteButton")
+   deleteButton.classList.add("btnStyle")
 
-   deleteButton.innerText="x"
+
+   
   
 
 
@@ -112,9 +113,8 @@ function deleteTask(div){
 
 
 function init (){
-    taskArray.forEach(element => {
-        printToHTML()        
+    taskArray.forEach(task => {
+        printToHTML(task)        
     });
-
 }
 init()
