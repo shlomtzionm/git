@@ -16,7 +16,7 @@ event.preventDefault()
 saveButton.addEventListener("click", function () {
     if (inputText.value !== "" && inputDate.value !== "" && inputTime.value !== ""){
   collectInputs();
-  printToHTML(taskArray[taskArray.length - 1]);
+  createDiv(taskArray[taskArray.length - 1]);
   saveToLS();
   clearForm()
 }})
@@ -38,52 +38,32 @@ function collectInputs() {
 
 }
 
-function printToHTML(task) {
-    createDiv(task.taskText, task.taskDate, task.taskTime);
-}
 
-    
-function createDiv(task, date, time){
-   let  div = document.createElement("div")
-   div.classList.add("animation")
+function createDiv(task){
+   let  TaskNote = document.createElement("div")
+   TaskNote.classList = "animation"
    
    let textDiv = document.createElement("textarea")
    textDiv.readOnly = true;
-   textDiv.innerHTML=task
+   textDiv.innerHTML=task.taskText
    
-    
    let dateDiv = document.createElement("div")
-   dateDiv.innerHTML = date
+   dateDiv.innerHTML = task.taskDate
    
    let timeDiv = document.createElement("div")
-   timeDiv.innerHTML = time
+   timeDiv.innerHTML = task.taskTime
 
+   taskContainer.appendChild(TaskNote)
+   TaskNote.appendChild(textDiv)
+   TaskNote.appendChild(dateDiv) 
+   TaskNote.appendChild(timeDiv)
 
-   let deleteButton = document.createElement('i')
-   deleteButton.classList ="bi bi-x"
-   deleteButton.classList.add("btnStyle")
-
-
+   editList(TaskNote)
    
-  
-
-
-   taskContainer.appendChild(div)
-   div.appendChild(deleteButton)
-    div.appendChild(textDiv)
-    div.appendChild(dateDiv) 
-    div.appendChild(timeDiv)
-   
-
-    div.classList.add("taskDiv")
+   TaskNote.classList.add("taskDiv")
 textDiv.classList.add("text")
 dateDiv.classList.add("date")
 timeDiv.classList.add("time")
-
-deleteButton.addEventListener('click',function(){
-    deleteTask(div)
-    saveToLS()
-})
 
 }
 
@@ -111,18 +91,50 @@ function clearForm (){
  inputTime.value = ""
 }
 
-function deleteTask(div){
-    let taskToRemove = taskArray.indexOf(taskArray.find(task => task.taskText === div.querySelector('.text').innerHTML &&
-    task.taskDate === div.querySelector('.date').innerHTML &&
-    task.taskTime === div.querySelector('.time').innerHTML))
-    div.remove()
+function deleteTask(TaskNote){
+    let taskToRemove = taskArray.indexOf(TaskNote)
+    
+    TaskNote.remove()
     taskArray.splice(taskToRemove,1)
 }
 
 
 function init (){
     taskArray.forEach(task => {
-        printToHTML(task)        
+        createDiv(task)        
     });
 }
 init()
+
+function editList(TaskNote){
+    let list = document.createElement('div')
+    TaskNote.appendChild(list)
+    list.classList.add('list')
+
+    let deleteItem = document.createElement('span')
+  deleteItem.classList = "bi bi-trash3"
+    
+    let strikethroughBtn = document.createElement('span')
+    strikethroughBtn.classList = "bi bi-type-strikethrough"
+    
+    list.appendChild(deleteItem)
+    list.appendChild(strikethroughBtn)
+  
+    
+deleteItem.addEventListener('click',function(){
+    deleteTask(TaskNote)
+    saveToLS()
+})
+
+strikethroughBtn.addEventListener("click", function(){
+strikethrough(TaskNote)
+})
+
+}
+
+function strikethrough(TaskNote) {
+    let children = TaskNote.querySelectorAll('.text, .date, .time');
+    children.forEach(element => {
+        element.style.textDecoration = "line-through";
+    });
+}

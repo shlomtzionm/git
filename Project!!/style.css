@@ -6,7 +6,7 @@ body{
 }
 
 .headline{
-  font-family: 'Times New Roman', Times, serif;
+    font-family: 'Lemon', serif;
 margin:80px 0px 25px 0px ;
 }
 
@@ -14,10 +14,11 @@ margin:80px 0px 25px 0px ;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
     height: 150px;
     width: 700px;
 
-    margin-top: 20px;
+    padding: 28px 0px 0px 84px;
 
     background-image: url(lines.jpeg);
 }
@@ -26,6 +27,9 @@ input,
 button{
     background-color: transparent;
     border: none;
+    outline: none
+    ;
+    width: 568px;
 }
 
 .taskContainer{
@@ -38,8 +42,8 @@ button{
 }
 
 .taskDiv{
-    background-image: url(ללא\ רקע.png);
-background-size: cover;
+    background-image: url(img_task.png);
+background-size: 100%;
 margin: 25px 20px 0px 5px;
     width: 170px;
     height: 210px;
