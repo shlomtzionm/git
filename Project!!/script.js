@@ -7,6 +7,7 @@ let taskContainer = document.querySelector(".taskContainer");
 let taskArray = getFromLocalStorage();
 let form = document.querySelector('.form')
 
+
 form.addEventListener('keypress', function(event){
     if (event.key === "Enter"){
 event.preventDefault()
@@ -16,74 +17,54 @@ event.preventDefault()
 saveButton.addEventListener("click", function () {
     if (inputText.value !== "" && inputDate.value !== "" && inputTime.value !== ""){
   collectInputs();
-  printToHTML(taskArray[taskArray.length - 1]);
+  createDiv(taskArray[taskArray.length - 1]);
   saveToLS();
   clearForm()
 }})
 
-
 clearButton.addEventListener('click', function(){
     clearAll()
 })
-
 
 function collectInputs() {
   let taskObj = {
     taskText: inputText.value,
     taskDate: inputDate.value,
     taskTime: inputTime.value,
+    isStrike: false
   };
 
   taskArray.push(taskObj);
 
 }
 
-function printToHTML(task) {
-    createDiv(task.taskText, task.taskDate, task.taskTime);
-}
-
-    
-function createDiv(task, date, time){
-   let  div = document.createElement("div")
-   div.classList.add("animation")
+function createDiv(taskObj){
+   let  TaskNote = document.createElement("div")
+   TaskNote.classList = "animation"
    
    let textDiv = document.createElement("textarea")
    textDiv.readOnly = true;
-   textDiv.innerHTML=task
+   textDiv.innerHTML=taskObj.taskText
    
-    
    let dateDiv = document.createElement("div")
-   dateDiv.innerHTML = date
+   dateDiv.innerHTML = taskObj.taskDate
    
    let timeDiv = document.createElement("div")
-   timeDiv.innerHTML = time
+   timeDiv.innerHTML = taskObj.taskTime
 
+   taskContainer.appendChild(TaskNote)
+   TaskNote.appendChild(textDiv)
+   TaskNote.appendChild(dateDiv) 
+   TaskNote.appendChild(timeDiv)
 
-   let deleteButton = document.createElement('i')
-   deleteButton.classList ="bi bi-x"
-   deleteButton.classList.add("btnStyle")
-
-
+   editList(TaskNote, taskObj)
    
-  
-
-
-   taskContainer.appendChild(div)
-   div.appendChild(deleteButton)
-    div.appendChild(textDiv)
-    div.appendChild(dateDiv) 
-    div.appendChild(timeDiv)
-   
-
-    div.classList.add("taskDiv")
+   TaskNote.classList.add("taskDiv")
 textDiv.classList.add("text")
 dateDiv.classList.add("date")
 timeDiv.classList.add("time")
 
-deleteButton.addEventListener('click',function(){
-    deleteTask(div)
-    saveToLS()
-})
+
 
 }
 
@@ -111,18 +92,69 @@ function clearForm (){
  inputTime.value = ""
 }
 
-function deleteTask(div){
-    let taskToRemove = taskArray.indexOf(taskArray.find(task => task.taskText === div.querySelector('.text').innerHTML &&
-    task.taskDate === div.querySelector('.date').innerHTML &&
-    task.taskTime === div.querySelector('.time').innerHTML))
-    div.remove()
+function deleteTask(TaskNote){
+    let taskToRemove = taskArray.indexOf(TaskNote)
+    
+    TaskNote.remove()
     taskArray.splice(taskToRemove,1)
 }
 
-
-function init (){
+function init() {
     taskArray.forEach(task => {
-        printToHTML(task)        
+        createDiv(task);
+        if (task.isStrike) {
+            let TaskNote = taskContainer.lastChild; 
+            let children = TaskNote.querySelectorAll('.text, .date, .time');
+            children.forEach(element => {
+                element.style.textDecoration = "line-through";
+                element.style.opacity = 0.5;
+            });
+        }
     });
 }
+
+function editList(TaskNote, taskObj) {
+    let list = document.createElement('div');
+    TaskNote.appendChild(list);
+    list.classList.add('list');
+
+    let deleteItem = document.createElement('span');
+    deleteItem.classList = "bi bi-trash3";
+
+    let strikethroughBtn = document.createElement('span');
+    strikethroughBtn.classList = "bi bi-type-strikethrough";
+
+    list.appendChild(deleteItem);
+    list.appendChild(strikethroughBtn);
+
+    deleteItem.addEventListener('click', function () {
+        deleteTask(TaskNote);
+        saveToLS();
+    });
+    
+    strikethroughBtn.addEventListener("click", function () {
+         strikethrough(TaskNote, taskObj);
+         saveToLS()
+    });
+}
+
+function strikethrough(TaskNote, taskObj) {
+    let children = TaskNote.querySelectorAll('.text, .date, .time');
+
+    if (taskObj.isStrike) {
+        children.forEach(element => {
+            element.style.textDecoration = "none"; 
+            element.style.opacity = 1;
+        });
+    } else {
+        children.forEach(element => {
+            element.style.textDecoration = "line-through";
+            element.style.opacity = 0.5;
+        });
+    }
+
+    taskObj.isStrike = !taskObj.isStrike; 
+    return taskObj.isStrike;
+}
+
 init()
