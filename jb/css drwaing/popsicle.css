@@ -1,0 +1,69 @@
+
+
+
+.popsicle{
+    display:inline-block;
+    position: relative;
+
+    width: 320px;
+    height: 522px;
+    background-color:#F9AEC9;
+border-radius: 247px 247px 50px 50px ;
+border: 16px solid #461A1A;
+box-shadow: 30px 30px #461A1A1A;
+}
+
+
+.stick{
+position: absolute;
+left:calc(50% - 68px);
+top: 522px;
+width: 120px;
+    height: 192px;
+    background-color: #FFD379;
+border-radius: 12px 12px 60px 60px ;
+border: 16px solid #461A1A;
+box-shadow: 16px 20px #461A1A1A;
+
+}
+
+
+.eye-container{
+   text-align: center;
+margin-top: 280px;
+position: relative;
+
+}
+
+.eye{
+    display: inline-block;
+    height: 42px;
+width: 42px;
+background-color:#461A1A;
+border-radius: 50px;
+}
+
+.eye-right{
+    margin-left: 65px;
+}
+
+.white{
+    display: inline-block;
+    height: 20px;
+width: 20px;
+background-color:white;
+border-radius: 50px;
+margin-right: 10px;
+margin-top: 5px;
+}
+
+
+.mouth{
+    position: relative;
+    left: calc(50% - 21px);
+    top: -5px;
+    border-radius: 15px 15px 50px 50px ;
+   height: 28px;
+   width: 42px;
+   background-color:#461A1A; 
+}
