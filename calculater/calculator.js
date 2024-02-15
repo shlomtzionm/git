@@ -1,20 +1,29 @@
+let screen = document.querySelector(".screen");
+let buttons = document.querySelectorAll("button");
 
+let numbers = ""; 
 
-let screen = document.querySelector('.screen');
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    if (button.value === "=") {
+      calc();
+    }else if(button.value === "c"){
+      clear()
+    } else {
+      numbers += button.value;
+      screen.value = numbers; 
+        }
+  });
+});
 
-function clickButton(value) {
-  screen.value += value;
-}
-
-function calculate() {
-  if (screen.value === '') {
-    screen.value = '';
-  } else {
-    let answer = eval(screen.value);
-    screen.value = answer;
+function calc() {
+  if (numbers !== "") { 
+        let result = eval(numbers);  
+    screen.value = result; 
+    numbers = ""; 
   }
 }
-
-function clearScreen() {
-  screen.value = '';
+function clear(){
+  numbers = ""
+  screen.value = ""
 }
