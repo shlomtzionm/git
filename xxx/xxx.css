@@ -30,7 +30,8 @@ color: rgb(2, 3, 23);
       
       animation-duration: 1s;
       animation-iteration-count: infinite;
-  }
+  
+    }
 
   @keyframes size{
     0%   {width: 100px;}

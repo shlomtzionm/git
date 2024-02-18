@@ -1,0 +1,124 @@
+.word{
+    display: flex;
+    height: 100px;
+    width: auto;
+flex-direction: row;
+justify-content: space-evenly;
+margin: auto;
+}
+
+.wordBox{
+    border-bottom: 5px solid black;
+    height: 50px;
+    width: 60px;
+font-size: xx-large;
+text-align: center;
+
+
+}
+
+.hangman{
+    position: relative;
+    width: 500px;
+    height: 400px;
+    margin: 20px auto;
+margin-top: -20px;
+
+}
+
+.pic{
+    position: absolute;
+    height: 10px;
+    background-color: black;
+}
+
+.ground{
+    width: 220px;
+bottom: 15px;
+left: calc(50% - 125px);
+}
+
+.stick{
+    width: 270px;
+    left: calc(50% - 225px);
+bottom: calc(15px + 135px);
+rotate: 90deg;
+}
+
+.top{
+    width: 150px;
+    left: calc(50% - 96px);
+    top: 100px;
+}
+
+.right{
+    width: 40px;
+    rotate: 90deg;
+    top: calc(100px + 20px);
+    left: calc(50% + 25px);
+}
+
+.head{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 10px solid black;
+    border-radius: 100000%;
+    top: calc(100px + 38px);
+    left: calc(50% + 10px);
+}
+
+.body{
+    width: 90px;
+    rotate: 90deg;
+    top: calc(50% + 40px);
+    left: calc(50%);
+}
+
+.limbs{
+    width: 45px;
+    rotate: 90deg;
+}
+
+.right-hand{
+    top: calc(50% + 40px);
+    left: calc(50% + 37px);
+    rotate: 45deg;
+}
+
+.left-hand{
+    top: calc(50% + 40px);
+    left: calc(50% + 6px);
+rotate: -45deg;
+}
+
+.left-leg{
+    top: calc(50% + 95px);
+    left: calc(50% + 9px);
+    rotate: -45deg;
+}
+
+.right-leg{
+    top: calc(50% + 95px);
+    left: calc(50% + 37px);
+    rotate: 45deg;
+}
+
+.letters{
+    display: flex;
+flex-wrap: wrap;
+justify-content: center;
+margin: auto;
+width: auto;
+margin-top: 50px;
+}
+
+.letterBox{
+   text-align: center;
+    font-size: x-large;
+    width: 40px;
+    height: 30px;
+margin: 15px;
+border: 1px solid black;
+
+}
