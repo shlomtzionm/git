@@ -50,6 +50,7 @@ function checkIfInclude(wordArray, letter,index) {
 
   if (wordArray.includes(letter)) {
     indexOf(letter, wordArray, index);
+    console.log(111)
   } else {
     console.log(222);
   }
@@ -66,13 +67,18 @@ if (index.length > 1){
 }
 }
 
+function handleClick(event) {
+  let letter = event.target; // Get the clicked letter element
+  let index = [];
+  checkIfInclude(wordArray, letter, index);
+  printIfTrue(index, letter);
+
+  letter.removeEventListener("click", handleClick);
+}
 
 letterBoxs.forEach((letter) => {
-  letter.addEventListener("click", function () {
-    let index = [];
-    checkIfInclude(wordArray, letter, index);
-    printIfTrue(index, letter)
-    
-  });
+  letter.addEventListener("click", handleClick);
 });
+
+
 
