@@ -28,7 +28,6 @@ class Activity {
 async function fetchBored(value: string): Promise<Activity> {
   let res = await fetch(`http://www.boredapi.com/api/${value}`);
   let data = await res.json();
-  console.log(data);
   return data as Activity;
 }
 
@@ -53,8 +52,11 @@ let p: HTMLElement = document.querySelector("#p") as HTMLElement;
 let tior:HTMLElement = document.querySelector("#tior") as HTMLElement
 tior.innerHTML = `this activity is for: ${theActivity.participants} pepole, and
 its categorized as: ${theActivity.type}`
-
-  }
+}
+let refreshBtn:HTMLButtonElement = document.querySelector("#refreshBtn") as HTMLButtonElement
+refreshBtn.addEventListener("click", function(){
+    updateActivity()
+})
 
   
   document.addEventListener("DOMContentLoaded", updateActivity)

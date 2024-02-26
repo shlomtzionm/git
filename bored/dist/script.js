@@ -23,7 +23,6 @@ function fetchBored(value) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`http://www.boredapi.com/api/${value}`);
         let data = yield res.json();
-        console.log(data);
         return data;
     });
 }
@@ -48,6 +47,10 @@ let p = document.querySelector("#p");
 its categorized as: ${theActivity.type}`;
             });
         }
+        let refreshBtn = document.querySelector("#refreshBtn");
+        refreshBtn.addEventListener("click", function () {
+            updateActivity();
+        });
         document.addEventListener("DOMContentLoaded", updateActivity);
         select.addEventListener("change", updateActivity);
         function getLink(theActivity) {
