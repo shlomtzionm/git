@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="container">
+    <input type="text" id="textToSearch" />
+    <button id="searchBtn">search here</button>
+    <button id="all">show all</button>
+
+    <table class="table">
+      <tr>
+        <td>Total countries result</td>
+        <td id="totalCountriesResult"></td>
+      </tr>
+      <tr>
+        <td>Total Countries Population</td>
+        <td id="totalCountriesPopulation"></td>
+      </tr>
+      <tr>
+        <td>Average Population</td>
+        <td id="averagePopulation"></td>
+      </tr>
+    </table>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Country Name</td>
+          <td>Number of citizens</td>
+        </tr>
+      </thead>
+      <tbody id="table2"></tbody>
+    </table >
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Region</td>
+          <td>Number of countries</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Americas</td>
+            <td  id="Americas" ></td>
+        </tr>
+        <tr>
+            <td>Asia</td>
+            <td  id="Asia"></td>
+        </tr>
+        <tr>
+            <td>Europe</td>
+            <td  id="Europe"></td>
+        </tr>
+        <tr>
+            <td>Africa</td>
+            <td  id="Africa"></td>
+        </tr>
+        <tr>
+            <td>Oceania</td>
+            <td  id="Oceania"></td>
+        </tr>
+          <tr>
+            <td>Antarctic</td>
+            <td id="Antarctic"></td>
+        </tr>
+      </tbody>
+      </div>
+    </table>
+  </body>
+  <script src="dist/script.js"></script>
+</html>
