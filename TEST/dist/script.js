@@ -21,13 +21,6 @@ class Name {
         this.official = official;
     }
 }
-class Currencies {
-    constructor(type) {
-        this.type = type;
-    }
-}
-let textToSearch = document.querySelector("#textToSearch");
-let searchFor = textToSearch.value;
 let searchBtn = document.querySelector("#searchBtn");
 let all = document.querySelector("#all");
 function getData(searchFor) {
@@ -49,6 +42,8 @@ function getData(searchFor) {
 }
 searchBtn.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
+        let textToSearch = document.querySelector("#textToSearch");
+        let searchFor = textToSearch.value;
         let data = yield getData(`/name/${searchFor}`);
         handleBtn(data);
     });
@@ -77,17 +72,9 @@ let averagePopulation = document.querySelector("#averagePopulation");
 function averagePopulationF(data) {
     averagePopulation.innerHTML = (totalCountriesPopulationF(data) / totalCountriesResultF(data)).toString();
 }
-function showData(data) {
+function mainTable(data) {
     data.forEach((country) => {
         buildTable(tbody2, country.name.official, country.population);
-        // let tr: HTMLElement = document.createElement("tr");
-        // let tdName: HTMLElement = document.createElement("td");
-        // let tdPop: HTMLElement = document.createElement("td");
-        // tdName.innerHTML = country.name.official;
-        // tdPop.innerHTML = country.population.toString();
-        // tr.appendChild(tdName);
-        // tr.appendChild(tdPop);
-        // tbody2.append(tr);
     });
 }
 function handleBtn(data) {
@@ -95,7 +82,7 @@ function handleBtn(data) {
     totalCountriesResultF(data);
     totalCountriesPopulationF(data);
     averagePopulationF(data);
-    showData(data);
+    mainTable(data);
     getRegions(data);
     currency(data);
 }
@@ -111,14 +98,6 @@ function getRegions(data) {
     }
     Object.keys(regions).forEach((region) => {
         buildTable(tbody3, region, regions[region]);
-        // let tr = document.createElement("tr") as HTMLElement;
-        // let tdR = document.createElement("td") as HTMLElement;
-        // let tdNum = document.createElement("td") as HTMLElement;
-        // tdR.innerHTML = region;
-        // tdNum.innerHTML = regions[region].toString();
-        // tr.appendChild(tdR);
-        // tr.appendChild(tdNum);
-        // tbody3.appendChild(tr);
     });
 }
 function currency(data) {
@@ -132,14 +111,6 @@ function currency(data) {
                 currenciesObj[key] = 1;
             }
             buildTable(tbody4, key, currenciesObj[key]);
-            // let tr = document.createElement("tr") as HTMLElement;
-            // let td = document.createElement("td") as HTMLElement;
-            // let td2 = document.createElement("td") as HTMLElement;
-            // td.innerHTML = key;
-            // td2.innerHTML = currenciesObj[key].toString();
-            // tr.appendChild(td);
-            // tr.appendChild(td2);
-            // tbody4.appendChild(tr);
         }
     }
 }
