@@ -54,6 +54,15 @@ all.addEventListener("click", function () {
         handleBtn(data);
     });
 });
+function handleBtn(data) {
+    restTables();
+    totalCountriesResultF(data);
+    totalCountriesPopulationF(data);
+    averagePopulationF(data);
+    mainTable(data);
+    getRegions(data);
+    currency(data);
+}
 let totalCountriesResult = document.querySelector("#totalCountriesResult");
 function totalCountriesResultF(data) {
     totalCountriesResult.innerHTML = data.length.toString();
@@ -76,15 +85,6 @@ function mainTable(data) {
     data.forEach((country) => {
         buildTable(tbody2, country.name.official, country.population);
     });
-}
-function handleBtn(data) {
-    restTables();
-    totalCountriesResultF(data);
-    totalCountriesPopulationF(data);
-    averagePopulationF(data);
-    mainTable(data);
-    getRegions(data);
-    currency(data);
 }
 function getRegions(data) {
     let regions = {};
@@ -110,8 +110,10 @@ function currency(data) {
             else {
                 currenciesObj[key] = 1;
             }
-            buildTable(tbody4, key, currenciesObj[key]);
         }
+    }
+    for (const currency in currenciesObj) {
+        buildTable(tbody4, currency, currenciesObj[currency]);
     }
 }
 function restTables() {
@@ -122,9 +124,6 @@ function restTables() {
     totalCountriesPopulation.innerHTML = "";
     averagePopulation.innerHTML = "";
 }
-let tbody4 = document.querySelector("#currency");
-let tbody3 = document.querySelector("#tbody3");
-let tbody2 = document.querySelector("#tbody2");
 function buildTable(body, text1, text2) {
     let tr = document.createElement("tr");
     let td = document.createElement("td");
@@ -135,3 +134,6 @@ function buildTable(body, text1, text2) {
     tr.appendChild(td2);
     body.appendChild(tr);
 }
+let tbody4 = document.querySelector("#currency");
+let tbody3 = document.querySelector("#tbody3");
+let tbody2 = document.querySelector("#tbody2");

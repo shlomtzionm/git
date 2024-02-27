@@ -58,6 +58,16 @@ all.addEventListener("click", async function () {
   handleBtn(data);
 });
 
+function handleBtn(data: Country[]) {
+  restTables();
+  totalCountriesResultF(data);
+  totalCountriesPopulationF(data);
+  averagePopulationF(data);
+  mainTable(data);
+  getRegions(data);
+  currency(data);
+}
+
 let totalCountriesResult = document.querySelector(
   "#totalCountriesResult"
 ) as HTMLElement;
@@ -90,17 +100,8 @@ function averagePopulationF(data: Country[]) {
 function mainTable(data: Country[]) {
   data.forEach((country) => {
     buildTable(tbody2, country.name.official, country.population);
+    
   });
-}
-
-function handleBtn(data: Country[]) {
-  restTables();
-  totalCountriesResultF(data);
-  totalCountriesPopulationF(data);
-  averagePopulationF(data);
-  mainTable(data);
-  getRegions(data);
-  currency(data);
 }
 
 function getRegions(data: Country[]) {
@@ -121,7 +122,6 @@ function getRegions(data: Country[]) {
 
 function currency(data: Country[]) {
   let currenciesObj: Record<string, number> = {};
-
   for (let i = 0; i < data.length; i++) {
     for (const key in data[i].currencies) {
       if (currenciesObj[key]) {
@@ -129,8 +129,10 @@ function currency(data: Country[]) {
       } else {
         currenciesObj[key] = 1;
       }
-      buildTable(tbody4, key, currenciesObj[key]);
     }
+  }
+  for (const currency in currenciesObj) {
+    buildTable(tbody4, currency, currenciesObj[currency]);
   }
 }
 
@@ -142,10 +144,6 @@ function restTables() {
   totalCountriesPopulation.innerHTML = "";
   averagePopulation.innerHTML = "";
 }
-
-let tbody4 = document.querySelector("#currency") as HTMLElement;
-let tbody3 = document.querySelector("#tbody3") as HTMLElement;
-let tbody2 = document.querySelector("#tbody2") as HTMLElement;
 
 function buildTable(body: HTMLElement, text1: string, text2: number) {
   let tr = document.createElement("tr") as HTMLElement;
@@ -159,3 +157,7 @@ function buildTable(body: HTMLElement, text1: string, text2: number) {
   tr.appendChild(td2);
   body.appendChild(tr);
 }
+
+let tbody4 = document.querySelector("#currency") as HTMLElement;
+let tbody3 = document.querySelector("#tbody3") as HTMLElement;
+let tbody2 = document.querySelector("#tbody2") as HTMLElement;
