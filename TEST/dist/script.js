@@ -21,10 +21,16 @@ class Name {
         this.official = official;
     }
 }
+class currencies {
+    constructor(type) {
+        this.type = type;
+    }
+}
 function getData(searchFor) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`https://restcountries.com/v3.1${searchFor}`);
         let data = yield res.json();
+        console.log(data);
         return data;
     });
 }
@@ -32,7 +38,7 @@ let textToSearch = document.querySelector("#textToSearch");
 let searchBtn = document.querySelector("#searchBtn");
 searchBtn.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let searchFor = textToSearch.value.toLocaleLowerCase();
+        let searchFor = textToSearch.value;
         let data = yield getData(`/name/${searchFor}`);
         handleBtn(data);
     });
@@ -44,13 +50,13 @@ all.addEventListener("click", function () {
         handleBtn(data);
     });
 });
-function totalCountriesResult(data) {
-    let totalCountriesResult = document.querySelector("#totalCountriesResult");
+let totalCountriesResult = document.querySelector("#totalCountriesResult");
+function totalCountriesResultF(data) {
     totalCountriesResult.innerHTML = data.length.toString();
     return data.length;
 }
-function totalCountriesPopulation(data) {
-    let totalCountriesPopulation = document.querySelector("#totalCountriesPopulation");
+let totalCountriesPopulation = document.querySelector("#totalCountriesPopulation");
+function totalCountriesPopulationF(data) {
     let popSum = 0;
     data.forEach((country) => {
         popSum += country.population;
@@ -58,9 +64,9 @@ function totalCountriesPopulation(data) {
     totalCountriesPopulation.innerHTML = popSum.toString();
     return popSum;
 }
-function averagePopulation(data) {
-    let averagePopulation = document.querySelector("#averagePopulation");
-    averagePopulation.innerHTML = (totalCountriesPopulation(data) / totalCountriesResult(data)).toString();
+let averagePopulation = document.querySelector("#averagePopulation");
+function averagePopulationF(data) {
+    averagePopulation.innerHTML = (totalCountriesPopulationF(data) / totalCountriesResultF(data)).toString();
 }
 let table2 = document.querySelector("#table2");
 function showData(data) {
@@ -76,28 +82,15 @@ function showData(data) {
     });
 }
 function handleBtn(data) {
-    table2.innerHTML = "";
-    resetTable();
-    totalCountriesResult(data);
-    totalCountriesPopulation(data);
-    averagePopulation(data);
+    restTables();
+    totalCountriesResultF(data);
+    totalCountriesPopulationF(data);
+    averagePopulationF(data);
     showData(data);
     getRegions(data);
+    currency(data);
 }
-function resetTable() {
-    Americas.innerHTML = "";
-    Asia.innerHTML = "";
-    Europe.innerHTML = "";
-    Africa.innerHTML = "";
-    Oceania.innerHTML = "";
-    Antarctic.innerHTML = "";
-}
-let Americas = document.querySelector("#Americas");
-let Asia = document.querySelector("#Asia");
-let Europe = document.querySelector("#Europe");
-let Africa = document.querySelector("#Africa");
-let Oceania = document.querySelector("#Oceania");
-let Antarctic = document.querySelector("#Antarctic");
+let tbody = document.querySelector("#tbody");
 function getRegions(data) {
     let regions = {};
     for (let i = 0; i < data.length; i++) {
@@ -107,7 +100,46 @@ function getRegions(data) {
         else {
             regions[data[i].region] = 1;
         }
-        let element = document.querySelector(`#${data[i].region}`);
-        element.innerHTML = regions[data[i].region].toString();
     }
+    Object.keys(regions).forEach((region) => {
+        let tr = document.createElement("tr");
+        let tdR = document.createElement("td");
+        let tdNum = document.createElement("td");
+        tdR.innerHTML = region;
+        tdNum.innerHTML = regions[region].toString();
+        tr.appendChild(tdR);
+        tr.appendChild(tdNum);
+        tbody.appendChild(tr);
+    });
+}
+let tbodyCurrencies = document.querySelector("#currency");
+function currency(data) {
+    tbodyCurrencies.innerText = "";
+    let currenciesObj = {};
+    for (let i = 0; i < data.length; i++) {
+        for (const key in data[i].currencies) {
+            if (currenciesObj[key]) {
+                currenciesObj[key]++;
+            }
+            else {
+                currenciesObj[key] = 1;
+            }
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            let td2 = document.createElement("td");
+            td.innerHTML = key;
+            td2.innerHTML = currenciesObj[key].toString();
+            tr.appendChild(td);
+            tr.appendChild(td2);
+            tbodyCurrencies.appendChild(tr);
+        }
+    }
+    console.log(currenciesObj);
+}
+function restTables() {
+    table2.innerHTML = "";
+    tbody.innerHTML = "";
+    totalCountriesResult.innerHTML = "";
+    totalCountriesPopulation.innerHTML = "";
+    averagePopulation.innerHTML = "";
 }

@@ -1,7 +1,7 @@
 class Country {
   name: Name;
   population: number;
-  currencies: {};
+  currencies: { [key: string]: string };
   region: string;
   constructor(name: Name, population: number, currencies: {}, region: string) {
     this.name = name;
@@ -18,9 +18,18 @@ class Name {
   }
 }
 
+class currencies {
+  type: {};
+  constructor(type: string) {
+    this.type = type;
+  }
+}
+
 async function getData(searchFor: string): Promise<Array<Country>> {
   let res: Response = await fetch(`https://restcountries.com/v3.1${searchFor}`);
   let data: Array<Country> = await res.json();
+  console.log(data);
+
   return data;
 }
 
@@ -28,29 +37,31 @@ let textToSearch = document.querySelector("#textToSearch") as HTMLInputElement;
 let searchBtn = document.querySelector("#searchBtn") as HTMLElement;
 
 searchBtn.addEventListener("click", async function () {
-  let searchFor: string = textToSearch.value.toLocaleLowerCase();
+  let searchFor: string = textToSearch.value;
   let data = await getData(`/name/${searchFor}`);
+
   handleBtn(data);
 });
 
 let all = document.querySelector("#all") as HTMLButtonElement;
 all.addEventListener("click", async function () {
   let data = await getData("/all");
+
   handleBtn(data);
 });
 
-function totalCountriesResult(data: Country[]): number {
-  let totalCountriesResult = document.querySelector(
-    "#totalCountriesResult"
-  ) as HTMLTableElement;
+let totalCountriesResult = document.querySelector(
+  "#totalCountriesResult"
+) as HTMLElement;
+function totalCountriesResultF(data: Country[]): number {
   totalCountriesResult.innerHTML = data.length.toString();
   return data.length;
 }
 
-function totalCountriesPopulation(data: Country[]): number {
-  let totalCountriesPopulation = document.querySelector(
-    "#totalCountriesPopulation"
-  ) as HTMLElement;
+let totalCountriesPopulation = document.querySelector(
+  "#totalCountriesPopulation"
+) as HTMLElement;
+function totalCountriesPopulationF(data: Country[]): number {
   let popSum: number = 0;
   data.forEach((country) => {
     popSum += country.population;
@@ -59,12 +70,12 @@ function totalCountriesPopulation(data: Country[]): number {
   return popSum;
 }
 
-function averagePopulation(data: Country[]) {
-  let averagePopulation = document.querySelector(
-    "#averagePopulation"
-  ) as HTMLElement;
+let averagePopulation = document.querySelector(
+  "#averagePopulation"
+) as HTMLElement;
+function averagePopulationF(data: Country[]) {
   averagePopulation.innerHTML = (
-    totalCountriesPopulation(data) / totalCountriesResult(data)
+    totalCountriesPopulationF(data) / totalCountriesResultF(data)
   ).toString();
 }
 
@@ -86,52 +97,73 @@ function showData(data: Country[]) {
   });
 }
 
-
 function handleBtn(data: Country[]) {
-  table2.innerHTML = "";
-resetTable()
-  totalCountriesResult(data);
-  totalCountriesPopulation(data);
-  averagePopulation(data);
+  restTables();
+  totalCountriesResultF(data);
+  totalCountriesPopulationF(data);
+  averagePopulationF(data);
   showData(data);
-getRegions(data)
+  getRegions(data);
+  currency(data);
 }
 
-function resetTable(){
-    Americas.innerHTML = "";
-    Asia.innerHTML = "";
-     Europe.innerHTML = "";
-    Africa.innerHTML = "";
-    Oceania.innerHTML = "";
-    Antarctic.innerHTML = "";
-
-}
-
-let Americas = document.querySelector("#Americas") as HTMLElement
-let Asia = document.querySelector("#Asia") as HTMLElement
-let Europe = document.querySelector("#Europe") as HTMLElement
-let Africa = document.querySelector("#Africa") as HTMLElement
-let Oceania = document.querySelector("#Oceania") as HTMLElement
-let Antarctic = document.querySelector("#Antarctic") as HTMLElement
-
-
+let tbody = document.querySelector("#tbody") as HTMLElement;
 function getRegions(data: Country[]) {
-    let regions: Record<string, number> = {};
+  let regions: Record<string, number> = {};
 
-    for (let i = 0; i < data.length; i++) {
-      
-        if (regions[data[i].region]) {
-            regions[data[i].region]++;
-        } else {
-            regions[data[i].region] = 1;
-        }
-
-       
-        let element = document.querySelector(`#${data[i].region}`) as HTMLElement;
-        element.innerHTML = regions[data[i].region].toString();
+  for (let i = 0; i < data.length; i++) {
+    if (regions[data[i].region]) {
+      regions[data[i].region]++;
+    } else {
+      regions[data[i].region] = 1;
     }
+  }
+
+  Object.keys(regions).forEach((region) => {
+    let tr = document.createElement("tr") as HTMLElement;
+    let tdR = document.createElement("td") as HTMLElement;
+    let tdNum = document.createElement("td") as HTMLElement;
+
+    tdR.innerHTML = region;
+    tdNum.innerHTML = regions[region].toString();
+
+    tr.appendChild(tdR);
+    tr.appendChild(tdNum);
+    tbody.appendChild(tr);
+  });
+}
+let tbodyCurrencies = document.querySelector("#currency") as HTMLTableElement
+function currency(data: Country[]) {
+  tbodyCurrencies.innerText = ""
+  let currenciesObj: Record<string, number> = {};
+
+  for (let i = 0; i < data.length; i++) {
+    for (const key in data[i].currencies) {
+      if (currenciesObj[key]) {
+        currenciesObj[key]++;
+      } else {
+        currenciesObj[key] = 1;
+      }
+      let tr = document.createElement("tr")
+      let td = document.createElement("td")
+      let td2 = document.createElement("td")
+      
+      td.innerHTML = key
+      td2.innerHTML = currenciesObj[key].toString()
+
+
+      tr.appendChild(td)
+      tr.appendChild(td2)
+tbodyCurrencies.appendChild(tr) 
+   }
+  }
+  console.log(currenciesObj);
 }
 
-
-
-
+function restTables() {
+  table2.innerHTML = "";
+  tbody.innerHTML = "";
+  totalCountriesResult.innerHTML = "";
+  totalCountriesPopulation.innerHTML = "";
+  averagePopulation.innerHTML = "";
+}
