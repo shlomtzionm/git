@@ -13,11 +13,10 @@ function printWordPlace() {
   for (i = 0; i < wordArray.length; i++) {
     let w = document.createElement("div");
     word.appendChild(w);
-      w.classList.add("wordBox");
-      if(wordArray[i] === " "){
-        w.style.border = "none"
-      }
-    
+    w.classList.add("wordBox");
+    if (wordArray[i] === " ") {
+      w.style.border = "none";
+    }
   }
 }
 printWordPlace();
@@ -35,50 +34,37 @@ printABC();
 let letterBoxs = document.querySelectorAll(".letterBox");
 let wordBoxs = document.querySelectorAll(".wordBox");
 
-function indexOf(letter, wordArray, index) {
-
-  for (let i = 0; i < wordArray.length; i++) {
-    if (wordArray[i] === letter) {
-      index.push(i);
-    }
-  }
-  return index
-}
-
-function checkIfInclude(wordArray, letter,index) {
-  letter = letter.textContent.toLowerCase();
-
-  if (wordArray.includes(letter)) {
-    indexOf(letter, wordArray, index);
-    console.log(111)
-  } else {
-    console.log(222);
-  }
-}
-
-
-function printIfTrue(index, letter){
-if (index.length > 1){
-    index.forEach(element => {
-       wordBoxs[element].innerHTML = letter.innerHTML
-    });
-}else{
-    wordBoxs[index].innerHTML = letter.innerHTML
-}
-}
-
-function handleClick(event) {
-  let letter = event.target; // Get the clicked letter element
-  let index = [];
-  checkIfInclude(wordArray, letter, index);
-  printIfTrue(index, letter);
-
-  letter.removeEventListener("click", handleClick);
-}
-
 letterBoxs.forEach((letter) => {
-  letter.addEventListener("click", handleClick);
+  letter.addEventListener("click", function () {
+    const clickedLetter = this.innerHTML;
+    handleClick(clickedLetter);
+  });
 });
+let parts = document.querySelectorAll(".man")
+let counter = 0
+function handleClick(clickedLetter) {
+  
+  
+
+  let letterFound = false;
+  wordArray.forEach((letter, index) => {
+      if (letter === clickedLetter) {
+          wordBoxs[index].innerHTML = clickedLetter;
+          letterFound = true;
+      }
+  });
+if(counter> parts.length){console.log("game over") }
+  else if (!letterFound  ) {
+      parts[counter].style.display = "block";
+      counter++;
+    }
+}
+
+
+
+
+
+
 
 
 

@@ -40,18 +40,20 @@ function getData(searchFor) {
         }
     });
 }
+let textToSearch = document.querySelector("#textToSearch");
 searchBtn.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        let textToSearch = document.querySelector("#textToSearch");
         let searchFor = textToSearch.value;
         let data = yield getData(`/name/${searchFor}`);
         handleBtn(data);
+        textToSearch.value = "";
     });
 });
 all.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         let data = yield getData("/all");
         handleBtn(data);
+        textToSearch.value = "";
     });
 });
 function handleBtn(data) {

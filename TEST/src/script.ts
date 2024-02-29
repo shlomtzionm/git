@@ -44,21 +44,24 @@ async function getData(searchFor: string): Promise<Country[]> {
   }
 }
 
+let textToSearch = document.querySelector(
+  "#textToSearch"
+) as HTMLInputElement;
 searchBtn.addEventListener("click", async function () {
-  let textToSearch = document.querySelector(
-    "#textToSearch"
-  ) as HTMLInputElement;
   let searchFor: string = textToSearch.value;
   let data = await getData(`/name/${searchFor}`);
   handleBtn(data);
+  textToSearch.value = ""
 });
 
 all.addEventListener("click", async function () {
   let data = await getData("/all");
   handleBtn(data);
+  textToSearch.value = ""
 });
 
 function handleBtn(data: Country[]) {
+  
   restTables();
   totalCountriesResultF(data);
   totalCountriesPopulationF(data);
