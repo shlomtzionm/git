@@ -7,7 +7,7 @@ function ChangeWordToArray(word) {
   wordArray = word.split("");
   console.log(wordArray);
 }
-ChangeWordToArray("guy even");
+ChangeWordToArray("hi hi");
 
 function printWordPlace() {
   for (i = 0; i < wordArray.length; i++) {
@@ -23,7 +23,7 @@ printWordPlace();
 
 function printABC() {
   for (i = 0; i < ABC.length; i++) {
-    let box = document.createElement("span");
+    let box = document.createElement("button");
     box.classList.add("letterBox");
     box.innerHTML = ABC[i];
     letters.appendChild(box);
@@ -38,33 +38,61 @@ letterBoxs.forEach((letter) => {
   letter.addEventListener("click", function () {
     const clickedLetter = this.innerHTML;
     handleClick(clickedLetter);
+    this.disabled = "true";
+    
   });
 });
-let parts = document.querySelectorAll(".man")
-let counter = 0
-function handleClick(clickedLetter) {
-  
-  
 
+let parts = document.querySelectorAll(".man");
+let counter = 0;
+function handleClick(clickedLetter) {
   let letterFound = false;
   wordArray.forEach((letter, index) => {
-      if (letter === clickedLetter) {
-          wordBoxs[index].innerHTML = clickedLetter;
-          letterFound = true;
-      }
+    if (letter === clickedLetter) {
+      wordBoxs[index].innerHTML = clickedLetter;
+      letterFound = true;
+    }
   });
-if(counter> parts.length){console.log("game over") }
-  else if (!letterFound  ) {
+  if (!letterFound) {
+    if (counter === parts.length) {
+      disableAll()
+       alert("Game Over")
+       animation()
+    } else {
       parts[counter].style.display = "block";
       counter++;
     }
+  }
+  win()
 }
 
 
 
+function win() {
+  const guessedWordArray = Array.from(wordBoxs).map(box => box.innerHTML);
+  
+  const guessedWord = guessedWordArray.join("").replaceAll(' ', '');
+  const originalWord = wordArray.join("").replaceAll(' ', '');
+  
+  if (guessedWord === originalWord) {
+    alert("Congratulations! You've won!");
+    disableAll()
+  }
 
+}
 
+ 
 
+function disableAll(){
+  letterBoxs.forEach((letter)=>{
+    letter.disabled = "true"  
+   })
+}
 
+function animation(){
+  parts.forEach((part)=>{
+      part.style.animation = "fall1"
+   
 
-
+  })
+}

@@ -66,6 +66,11 @@ rotate: 90deg;
     border-radius: 100000%;
     top: calc(100px + 20px);
     left: calc(50% + 10px);
+
+    animation-name: fall1; /* Apply the fall1 animation */
+    animation-duration: 4s; /* Duration of the animation */
+    animation-timing-function: ease-in-out; /* Timing function (e.g., linear, ease-in-out) */
+    animation-iteration-count: 1; 
 }
 
 .body{
@@ -127,3 +132,11 @@ border: 1px solid black;
  .man{
     display: none;
  }
+
+@keyframes fall1{
+    25%{top: 150px;}
+    50%{top: 200px;}
+    75%{top: 310px;left :300px;}
+    80%{top: 310px; left :75px;}
+100%{ top: 400px; left :75px;}
+}
