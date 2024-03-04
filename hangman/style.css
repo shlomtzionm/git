@@ -67,10 +67,7 @@ rotate: 90deg;
     top: calc(100px + 20px);
     left: calc(50% + 10px);
 
-    animation-name: fall1; /* Apply the fall1 animation */
-    animation-duration: 4s; /* Duration of the animation */
-    animation-timing-function: ease-out; /* Timing function (e.g., linear, ease-in-out) */
-    animation-iteration-count: 1; 
+    animation: headFall 4s ease-in-out  1 ;
 }
 
 .body{
@@ -78,6 +75,8 @@ rotate: 90deg;
     rotate: 90deg;
     top: calc(50% + 25px);
     left: calc(50%);
+
+    animation: bodyFall 4s ease-in-out  1 ;
 }
 
 .limbs{
@@ -133,11 +132,18 @@ border: 1px solid black;
     display: none;
  }
 
-@keyframes fall1{
-    25%{top: 150px;}
-    50%{top: 200px;}
-    75%{top: 310px;left :300px;}
-    80%{top: 310px; left :75px;}
-100%{ top: 400px; left :75px;
-rotate: 180deg;}
+@keyframes headFall{
+    25%{top: 310px; left: 260px;}
+    40%{top: 280px; left: 260px;}
+    55%{top: 310px; left :260px;}
+80%{ top: 310px; left :80px;}
+100%{top:310px; left: 85px;}
+}
+
+@keyframes bodyFall{
+    25%{top: 330px; left: 260px; transform: rotate(150deg);}
+    40%{top: 280px; left: 260px;}
+    55%{top: 310px; left :260px;}
+80%{ top: 310px; left :260px;}
+100%{top:280px; left: 260px;}
 }
