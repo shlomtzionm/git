@@ -38,7 +38,7 @@ letterBoxs.forEach((letter) => {
   letter.addEventListener("click", function () {
     const clickedLetter = this.innerHTML;
     handleClick(clickedLetter);
-    this.disabled = "true";
+    this.disabled = true
     
   });
 });
@@ -54,19 +54,15 @@ function handleClick(clickedLetter) {
     }
   });
   if (!letterFound) {
-    if (counter === parts.length) {
-      disableAll()
-       alert("Game Over")
-       animation()
-    } else {
+    if (!(counter === parts.length)) {
       parts[counter].style.display = "block";
       counter++;
+    } else {
+    gameOver();
     }
   }
-  win()
+  win();
 }
-
-
 
 function win() {
   const guessedWordArray = Array.from(wordBoxs).map(box => box.innerHTML);
@@ -76,23 +72,28 @@ function win() {
   
   if (guessedWord === originalWord) {
     alert("Congratulations! You've won!");
-    disableAll()
+    disableAll();
   }
-
 }
-
- 
 
 function disableAll(){
   letterBoxs.forEach((letter)=>{
-    letter.disabled = "true"  
-   })
+    letter.disabled = true;
+   });
 }
 
-function animation(){
-  parts.forEach((part)=>{
-      part.style.animation = "fall1"
-   
-
-  })
+function gameOver() {
+  disableAll();
+ alert("Game Over");
+ counter = 0
+ parts.forEach((part) => {
+      part.classList.add(`game-over${counter}`);
+    counter++
+    })
+let dots = document.querySelectorAll(".dot")
+dots.forEach((dot)=>{
+  dot.style.display = "block"
+  dot.classList.add('red')
+})    
 }
+
