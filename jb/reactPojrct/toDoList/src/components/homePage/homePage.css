@@ -1,0 +1,47 @@
+
+  .text {
+    width: 550px;
+    height: 200px;  
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    box-sizing: border-box;
+    margin-left: calc(50% - 235px );
+    margin-top: 20px;
+  }
+  
+  .itemHeader:hover,
+  .itemHeader:focus,
+  .text:hover,
+  .text:focus ,
+  .saveButton :hover,
+  .saveButton:focus {
+    border-color: #020c16;
+    box-shadow: 0 0 5px rgba(100, 105, 110, 0.5);
+  }
+  
+.saveButton{
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+   margin-left: 50%;
+   margin-top: 10px; 
+}
+
+.itemHeader{
+  
+  width: 550px;
+  height: 100px;  
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 16px; 
+  box-sizing: border-box;
+  margin-left: calc(50% - 235px );
+  margin-top: 20px;
+
+}
+.taskContainer{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly
+}

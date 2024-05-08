@@ -1,18 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
-import { Details } from "./components/detailsPage/DetailsPage";
-// import { HomePage } from "./components/homePage/HomePage";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import "./App.css";
+import counterReducer from "./features/counter/counterSlice";
+import Counter from "./components/counter";
 
+
+
+const store = configureStore({
+  reducer:{
+    counter: counterReducer
+  }
+})
 function App() {
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Details/>} />
-          <Route path="/details" element={<Details/>}  />
-          <Route path="/details/:id" />
-        </Routes>
-      </BrowserRouter>
+    <Provider store={store}>
+      <Counter/>
+    </Provider>
     </>
   );
 }
