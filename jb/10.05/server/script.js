@@ -18,3 +18,13 @@ app.get('/grades', async (req, res) => {
   res.send(json)
 })
 
+
+app.post('/grades',async (req,res)=>{
+  let oldFile = fs.readFileSync('data/grades.json')
+  let gradesArray = JSON.parse(oldFile)
+  gradesArray.push(req.body)
+
+  
+  fs.writeFileSync('data/grades.json',JSON.stringify(gradesArray))
+  console.log("we got the data")
+})
