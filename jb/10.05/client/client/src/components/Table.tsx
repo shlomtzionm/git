@@ -1,4 +1,3 @@
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,29 +5,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState } from "react"
-import { useEffect } from "react"
+import { Grade } from "./HomePage"
 
 
-export default function BasicTable() {
-  
-  interface Grade{
-    name:string,
-    grade:number
-  }
-  const [gradeData, setGradeDate]= useState<Grade[]>([])
 
-  const getGradeData = async()=>{
-    const res = await fetch("http://localhost:3000/grades")
-    const data = await res.json()
-    return data}
-    
-    useEffect(()=>{
-        const fetchDate = async ()=>{
-            setGradeDate(await getGradeData())
-        }
-        fetchDate()
-    },[])
+interface BasicTableProps {
+  children: Grade[];
+}
+
+export default function BasicTable(props: BasicTableProps) {
+  const { children } = props;
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }} aria-label="simple table">
@@ -39,15 +26,16 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {gradeData.map((row) => (
+          {children.map((child) => (
+      
             <TableRow
-              key={row.name}
+              key={child.name} 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {child.name}
               </TableCell>
-              <TableCell align="right">{row.grade}</TableCell>
+              <TableCell align="right">{child.grade}</TableCell>
             </TableRow>
           ))}
         </TableBody>
