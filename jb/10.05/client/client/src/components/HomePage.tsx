@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import BasicTable from "./Table"
-import { Select } from "./select"
 import { AddName } from "./AddName"
+
+import { Select } from "./Select"
+
 
 
 export interface Grade{
@@ -29,8 +31,9 @@ export const HomePage = ()=> {
         },[trigger])
     return(<>
     <BasicTable>{gradeData}</BasicTable>
-    <Select>{gradeData}</Select>
     <AddName setTrigger={setTrigger}/>
+    <br/>
+    <Select></Select>
     </>)
 }
 
