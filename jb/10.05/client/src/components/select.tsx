@@ -17,11 +17,13 @@ export const Select = () => {
     return (
         <>
             <select onChange={handleSelect}>
+                <option>names</option>
                 {grades.map((item) => (
                     <option key={item.name} value={item.name}>{item.name}</option>
+                  
                 ))}
             </select>
-            <Edit>{selected}</Edit>
+            <Edit name={selected}></Edit>
             <Delete />
         </>
 

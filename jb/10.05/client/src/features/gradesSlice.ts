@@ -23,11 +23,9 @@ export const gradeSlice = createSlice({
             });
         },
         setGrades: (state, action: PayloadAction<{name:string,grade:number}[]>) => {
-            // Concatenate new grades with existing ones and filter out duplicates
             const newGrades = action.payload;
             const uniqueGrades = newGrades.filter(newGrade => !state.grades.find(existingGrade => existingGrade.name === newGrade.name));
-            state.grades = [...state.grades, ...uniqueGrades];;
-                 
+            state.grades = [...state.grades, ...uniqueGrades]
                 }
             }
 })
