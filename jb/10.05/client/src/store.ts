@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gradesReducer from 'featurs\gradesSlice'
+import gradesReducer from '../src/features/gradesSlice.ts';
 
-export const store = configureStore({
+ export const store = configureStore({
     reducer: {
         grades: gradesReducer 
     }

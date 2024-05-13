@@ -4,16 +4,11 @@ import { Edit } from "./Edit";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
+
 export const Select = () => {
 
-    interface GradesObj{
-        name:string,grade:number
-    }
-    
-
-    
     const [selected, setSelected] = useState("");
-    const grades = useSelector((state: RootState) => state.grades) as GradesObj[];
+    const grades = useSelector((state: RootState) => state.grades.grades) ;
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelected(e.target.value);
@@ -29,5 +24,6 @@ export const Select = () => {
             <Edit>{selected}</Edit>
             <Delete />
         </>
+
     );
 };

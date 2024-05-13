@@ -1,12 +1,11 @@
 
 import {  useState } from "react"
 import { useDispatch } from "react-redux"
-import { edit } from "../featurs/gradesSlice"
+import { edit } from "../features/gradesSlice"
 
 interface EditProps{
     children:string
 }
-
 
 
 export const Edit = (props: EditProps) => {

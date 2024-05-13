@@ -5,17 +5,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Grade } from "./HomePage"
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 
+export default function BasicTable() {
 
-interface BasicTableProps {
-  children: Grade[];
-}
-
-export default function BasicTable(props: BasicTableProps) {
-  const { children } = props;
-
+  const grades = useSelector((state: RootState) => state.grades.grades);
+ const cons = ()=>{
+  console.log(grades)
+ }
+cons()
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }} aria-label="simple table">
@@ -26,12 +26,9 @@ export default function BasicTable(props: BasicTableProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {children.map((child) => (
-      
-            <TableRow
-              key={child.name} 
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
+          
+          {grades.map((child) => (
+            <TableRow key={child.name}>
               <TableCell component="th" scope="row">
                 {child.name}
               </TableCell>

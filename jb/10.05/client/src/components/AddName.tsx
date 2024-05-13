@@ -1,12 +1,13 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
+// import { Dispatch, useState } from 'react';
 
-interface AddNameProps{
-    setTrigger:Dispatch<React.SetStateAction<boolean>>
-}
+// interface AddNameProps{
+//     setTrigger:Dispatch<React.SetStateAction<boolean>>
+// }
 
-export const AddName = ({setTrigger}:AddNameProps)=> {
+export const AddName = ()=> {
  
     const [newName, setNewName] = useState("")
     const [newGrade, setNewGrade] = useState("0")
@@ -33,7 +34,7 @@ fetch("http://localhost:3000/grades", requestOptions)
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
 
-  setTrigger(true)
+  // setTrigger(true)
     }
     return(<>
     <Button onClick={()=>{sendDatas()}}><AddIcon/></Button>

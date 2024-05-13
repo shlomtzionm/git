@@ -13,18 +13,18 @@ app.listen(port, () => {
 
 
 app.get('/grades', async (req, res) => {
-    let gradesFile =fs.readFileSync('data/grades.json').toString()
+    let gradesFile =fs.readFileSync('grades.json').toString()
     let json = JSON.parse(gradesFile)
   res.send(json)
 })
 
 
 app.post('/grades',async (req,res)=>{
-  let oldFile = fs.readFileSync('data/grades.json')
+  let oldFile = fs.readFileSync('grades.json')
   let gradesArray = JSON.parse(oldFile)
   gradesArray.push(req.body)
 
   
-  fs.writeFileSync('data/grades.json',JSON.stringify(gradesArray))
+  fs.writeFileSync('grades.json',JSON.stringify(gradesArray))
   console.log("we got the data")
 })
