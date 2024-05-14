@@ -2,19 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 export interface UpdateState{
- update: boolean
+ update: number
 }
 
 const initialState: UpdateState = {
-  update: false
+  update: 0
 }
 
 export const UpdateSlice = createSlice({
     name: 'update',
     initialState,
     reducers:{
-        Update: (state, action: PayloadAction<boolean>) => {
-    state.update = action.payload
+        Update: (state, action: PayloadAction<number>) => {
+    state.update += action.payload
                 }
             }
 })

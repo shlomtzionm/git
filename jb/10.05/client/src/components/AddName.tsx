@@ -2,13 +2,13 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Update } from '../features/updateSlice';
+import {addName} from "../features/gradesSlice"
 
 
 export const AddName = ()=> {
  
     const [newName, setNewName] = useState("")
-    const [newGrade, setNewGrade] = useState("0")
+    const [newGrade, setNewGrade] = useState(0)
 const dispatch = useDispatch()
     
     const sendDatas = ()=> {
@@ -31,12 +31,14 @@ fetch("http://localhost:3000/grades", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-dispatch(Update(true))
-dispatch(Update(false))
+
+
+dispatch(addName({name:newName,grade:newGrade}))
+
     }
     return(<>
     <Button onClick={()=>{sendDatas()}}><AddIcon/></Button>
     <input onChange={(e)=>setNewName(e.target.value)} placeholder='name'></input>
-    <input type='number' onChange={(e)=>setNewGrade(e.target.value)} placeholder='grade'></input>
+    <input type='number' onChange={(e)=>setNewGrade(+(e.target.value))} placeholder='grade'></input>
     </>)
 }

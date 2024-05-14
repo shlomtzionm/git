@@ -1,7 +1,8 @@
 
 import {  useState } from "react"
 import { useDispatch } from "react-redux"
-import { edit } from "../features/gradesSlice"
+import {edit} from "../features/gradesSlice"
+
 
 interface EditProps{
     name:string
@@ -11,12 +12,12 @@ interface EditProps{
 export const Edit = (props: EditProps) => {
 const {name} = props
 const [input,setInput]= useState(0)
-
-
 const dispatch = useDispatch()
 
+
+
 const handleEdit = ()=>{
-    dispatch(edit({name:name,grade:input}))
+  
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -38,6 +39,7 @@ const handleEdit = ()=>{
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
 
+dispatch(edit({name:name,grade:input}))  
 } 
 
 return(<>

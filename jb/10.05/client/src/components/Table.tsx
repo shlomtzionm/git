@@ -12,9 +12,11 @@ import { RootState } from '../store';
 
 export default function BasicTable() {
 
+
   const grades = useSelector((state: RootState) => state.grades.grades);
  const cons = ()=>{
   console.log(grades)
+
  }
 cons()
 

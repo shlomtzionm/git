@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Update } from "../features/updateSlice";
+import { deleteName } from "../features/gradesSlice";
 
 interface DeleteProps{
     name:string
@@ -29,8 +29,7 @@ fetch("http://localhost:3000/grades", requestOptions)
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
 
- dispatch(Update(true))
- dispatch(Update(false)) 
+dispatch(deleteName(name))
     }
     return(<>
     <button onClick={handleDelete}>delete</button>
