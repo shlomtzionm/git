@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { useEffect } from 'react';
+
 
 
 export default function BasicTable() {
@@ -18,9 +18,7 @@ export default function BasicTable() {
  }
 cons()
 
-useEffect(()=>{
 
-},[grades])
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }} aria-label="simple table">

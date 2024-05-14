@@ -5,13 +5,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 
+
 export const Select = () => {
 
     const [selected, setSelected] = useState("");
     const grades = useSelector((state: RootState) => state.grades.grades) ;
 
+
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelected(e.target.value);
+
     };
 
     return (
@@ -23,8 +26,8 @@ export const Select = () => {
                   
                 ))}
             </select>
-            <Edit name={selected}></Edit>
-            <Delete />
+            <Edit name={selected}/>
+            <Delete name={selected} />
         </>
 
     );

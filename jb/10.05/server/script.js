@@ -8,7 +8,7 @@ const port = 3000
 app.use([cors(),express.json()]);
 
 
-let dataFile = fs.readFileSync('grades.json')
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
@@ -16,13 +16,15 @@ app.listen(port, () => {
 
 
 app.get('/grades', async (req, res) => {
-  dataFile.toString()
+  let dataFile = fs.readFileSync('grades.json')
+ dataFile.toString()
     let json = JSON.parse(dataFile)
   res.send(json)
 })
 
 
 app.post('/grades',async (req,res)=>{
+  let dataFile = fs.readFileSync('grades.json')
   let gradesArray = JSON.parse(dataFile)
   gradesArray.push(req.body)
 
@@ -32,6 +34,7 @@ app.post('/grades',async (req,res)=>{
 })
 
 app.patch("/grades", async(req,res)=>{
+  let dataFile = fs.readFileSync('grades.json')
   let gradesArray = JSON.parse(dataFile);
   let index = gradesArray.findIndex(item => item["name"] === req.body.name);
 
@@ -41,3 +44,12 @@ app.patch("/grades", async(req,res)=>{
     console.log("Grade updated successfully");
   } 
 });
+
+app.delete('/grades', async(req,res)=>{
+  let dataFile = fs.readFileSync('grades.json')
+  let gradesArray = JSON.parse(dataFile)
+gradesArray = gradesArray.filter(item => item['name'] !== req.body.name)
+
+fs.writeFileSync('grades.json',JSON.stringify(gradesArray))
+console.log('item is deleted')
+})
