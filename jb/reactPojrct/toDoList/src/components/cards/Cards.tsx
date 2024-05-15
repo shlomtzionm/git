@@ -1,46 +1,45 @@
-import { Card } from '@mui/material'
-import { removeItem } from '../../featurs/listSlice';
+import { Card } from '@mui/material';
+import { removeItem, setCounter } from '../../featurs/listSlice';
 import { RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export const Cards = () => {
-    
+interface CardsProps {
+    setName: (value: string) => void;
+    setValue: (value: string) => void;
+}
+
+export const Cards = ({ setName, setValue }: CardsProps) => {
+  
     const dispatch = useDispatch();
     const list = useSelector((state: RootState) => state.list);
 
-    const handleRemoving = (task:string) => {
+    const handleRemoving = (task: string) => {
         dispatch(removeItem(task));
     };
 
-    const [editableTask, setEditableTask] = useState<string | null>(null);
-
     const handleEdit = (task: string) => {
-        setEditableTask(task);
-    };
+        setName(task);
+        setValue(list[task]); 
+dispatch(setCounter(1))    };
 
-    useEffect(()=>{
-        console.log(list)
-    },[list])
+    useEffect(() => {
+        console.log(list);
+    }, [list]);
 
     return (
         <>
-            {Object.keys(list).map(task => (
+            {Object.keys(list).map((task) => (
                 <Card 
-                    style={{ 'width': "200px", 'textAlign': 'center' }}
+                    style={{ width: "200px", textAlign: 'center' }} 
                     key={task}
-                    onDoubleClick={() => handleEdit(task)}
-                    onClick={() =>alert("aa") }
-                
+                    onClick={() => handleEdit(task)}
                 >
-                    <button onClick={()=>handleRemoving(task)}>x</button>
+                    <button onClick={() => handleRemoving(task)}>x</button>
                     <h4>{task}</h4>
-                    <textarea className={`textarea ${editableTask === task ? 'editing' : ''}`}
-                 disabled={editableTask !== task}
-                 defaultValue={list[task]}
-                 ></textarea>
+                    <textarea defaultValue={list[task]}></textarea>
                 </Card>
             ))}
         </>
     );
-}
+};
