@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface listState {
-  [name: string]: string;
-  counter: number;
+  [name: string]: string
+ 
 }
 
-const initialState: listState = {
-  counter: 0,
-};
+const initialState: listState = {};
 
 export const listSlice = createSlice({
   name: "list",
@@ -34,11 +32,9 @@ export const listSlice = createSlice({
         alert("The task name does not exist");
       }
     },
-    setCounter:(state, action:PayloadAction<number>)=>{
-      state.counter = action.payload
-    }
+
   },
 });
 
-export const { addItem, removeItem, editItem,setCounter } = listSlice.actions;
+export const { addItem, removeItem, editItem } = listSlice.actions;
 export default listSlice.reducer;

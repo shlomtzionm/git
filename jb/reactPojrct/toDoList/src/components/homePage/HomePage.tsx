@@ -1,20 +1,21 @@
-import { useState } from 'react';
+
 import '../homePage/homePage.css';
 import { Input, Button } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../featurs/listSlice';
 import { Cards } from '../cards/Cards';
+import { RootState } from '../../store/store';
+import { changeName, changeValue } from '../../featurs/settingSlice';
 
 export const HomePage = () => {
     const { TextArea } = Input;
     const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [value, setValue] = useState("");
+const setting = useSelector((state:RootState)=>state.setting)
 
     const handleAdding = () => {
-        dispatch(addItem({ name: name, value: value }));
-        setName("");
-        setValue("");
+
+        dispatch(addItem({ name:setting.name , value: setting.value }));
+        
     };
 
     return (
@@ -22,16 +23,16 @@ export const HomePage = () => {
             <TextArea 
                 rows={1} 
                 className='itemHeader' 
-                placeholder='Enter task name' 
-                value={name} // Link value to state
-                onChange={(e) => setName(e.target.value)} 
-            />
+                placeholder='Enter task name'
+                onChange={(e) => dispatch(changeName({name:e.target.value}))} 
+         value={setting.name}
+         />
             <TextArea 
                 className='text' 
                 placeholder='Enter task' 
-                value={value} // Link value to state
-                onChange={(e) => setValue(e.target.value)} 
-            />
+                onChange={(e) => dispatch(changeValue({value:e.target.value}))} 
+           value={setting.value}
+           />
             <Button 
                 type="text" 
                 className='saveButton' 
@@ -40,7 +41,7 @@ export const HomePage = () => {
                 Save
             </Button>
             <div className='taskContainer'>
-                <Cards setName={setName} setValue={setValue} />
+                <Cards />
             </div>
         </>
     );
