@@ -1,20 +1,31 @@
-let p = document.querySelector("p").innerText
-let pArray = ""
+let p = document.querySelector(".text");
+let pArray = "I LOVE YOU GUY EVEN";
 
-
-function convertToArray(p){
- pArray = p.split("")
- 
+function writeWord(char, delay) {
+  setTimeout(() => {
+    p.textContent += char;
+    if (char === pArray[pArray.length - 1]) {
+      when(); // Call when() if the last character is appended
+    }
+  }, delay);
 }
-convertToArray(p)
 
- function timing(pArray){
-for (let i = 0; i <pArray.length; i++) {
-    setInterval(() => {
-       console.log( pArray[i]);
-    }, 10000 - i * 1000);
-    
-} 
+function writeText() {
+  for (let i = 0; i < pArray.length; i++) {
+    writeWord(pArray[i], 500 * i);
+  }
 }
- 
-timing(pArray)
+
+function when() {
+  let heart = document.querySelector(".heart");
+  heart.style.animationName = "size"; // Corrected from animation_name to animationName
+  
+}
+
+
+let heart = document.querySelector(".heart")
+heart.addEventListener("click",function(){
+let p = document.querySelector(".p").innerHTML = ""
+  writeText()
+
+})
