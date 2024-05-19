@@ -20,21 +20,21 @@ const handleDelete = (id:number)=>{
     };
     
     fetch(`http://localhost:3000/todo/${id}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((response) => response.json())
+      .then((json) => {console.log(json); onChange()})
       .catch((error) => console.error(error))
-   onChange()
+
 }
 
 return(<>
 <Row gutter={16}>
         {children.map((child,index)=>(
              <Col span={20} key={index}>
-            <AntdCard title={child.name} bordered={false}
+            <AntdCard title={child.task} bordered={false}
                   actions={[
                     <DeleteOutlined key="delete" onClick={()=>handleDelete(child.id)}/>,
                     <EditOutlined key="edit" />,
-                  ]}>{child.age}</AntdCard>
+                  ]}>{child.value}</AntdCard>
            </Col>
         ))}
     

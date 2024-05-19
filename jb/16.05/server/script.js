@@ -27,6 +27,7 @@ app.post("/todo", async(req,res)=>{
     let toDoList = await getListFromFile()
     toDoList.push(req.body)
     fs.writeFileSync('data.json', JSON.stringify(toDoList) )
+    res.send(toDoList)
 })
 
 app.patch("/todo/:id", async(req,res)=>{
@@ -37,6 +38,7 @@ let newList = toDoList.filter((item)=>item.id !== +id);
 let newItem = {...item , ...req.body}
 newList.push(newItem)
 fs.writeFileSync("data.json",JSON.stringify(newList))
+res.send(toDoList)
 } )
 
 app.delete('/todo/:id',async(req,res)=>{
@@ -44,4 +46,5 @@ app.delete('/todo/:id',async(req,res)=>{
   let id = req.params.id
   let newList = toDoList.filter((item)=>item.id !== +id)
   fs.writeFileSync("data.json",JSON.stringify(newList))
+  res.send(newList)
 })
