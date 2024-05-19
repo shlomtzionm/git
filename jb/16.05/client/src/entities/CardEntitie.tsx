@@ -1,5 +1,5 @@
 export interface CradEntitie{
-id: number;
+id: string;
 task: string;
 value: string
 }

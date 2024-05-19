@@ -1,56 +1,90 @@
 import { useEffect, useState } from "react";
 import { Cards } from "./Cards";
+import { CradEntitie } from "../entities/CardEntitie";
 
-export const HomePage = () => {
-  const [list, setList] = useState([]);
-  const [task, setTask] = useState("");
-  const [value, setValue] = useState("");
+export const HomePage = ()=>{
+    
+const [list ,setList] = useState([])
+const [title, setTitle] = useState("")
+const [more, setMore] = useState("")
+const [isEdit, setIsEdit] = useState(false)
+const [id,setId]= useState("")
+const [saveOrEdit ,setSaveOrEdit] = useState("save")
 
-  const getList = () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow"
-    };
+    const getList = ()=>{
+        const requestOptions = {
+          method: "GET",
+          redirect: "follow"
+        };
+        
+        fetch("http://localhost:3000/todo", requestOptions)
+          .then((res) => res.json())
+          .then((json) => setList(json))
+        }
 
-    fetch("http://localhost:3000/todo", requestOptions)
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json)
-        setList(json); })
-      .catch((error) => console.error(error));
-  };
+    useEffect(getList, [])
 
-  useEffect(getList, []);
+    const handleSave = ()=>{
+      if (!isEdit){
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      
+      const raw = JSON.stringify({
+        "id": title,
+        "task": title,
+        "value": more
+      });
+      
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+      
+      fetch("http://localhost:3000/todo", requestOptions)
+        .then((response) => response.text())
+        .then((result) =>{ console.log(result);   getList()})
+        .catch((error) => console.error(error));
+     
+  } else {handleEdit()}}
 
-  const handleSave = () => {
-    const myHeaders = new Headers();
+    const handleEdit = () =>{
+      const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
+    
     const raw = JSON.stringify({
-      id: Math.floor(Math.random() * (1000 - 3 + 1)) + 3,
-      task: task,
-      value: value
+      "id":id,
+      "task":title,
+      "value":more
     });
-
+    
     const requestOptions = {
-      method: "POST",
+      method: "PATCH",
       headers: myHeaders,
       body: raw,
       redirect: "follow"
     };
-
-    fetch("http://localhost:3000/todo", requestOptions)
+    
+    fetch(`http://localhost:3000/todo/${id}`, requestOptions)
       .then((response) => response.json())
-      .then((json) => {console.log(json); getList() })
+      .then((result) => {console.log(result); getList() ;setIsEdit(false);setSaveOrEdit("save")})
       .catch((error) => console.error(error));
-  };
+    }
+    
+   
 
-  return (
-    <>
-      <Cards onChange={getList}>{list}</Cards>
-      <input placeholder="enter task" onChange={(e) => setTask(e.target.value)} />
-      <input placeholder="enter value" onChange={(e) => setValue(e.target.value)} />
-      <button onClick={handleSave}>save</button>
-    </>
-  );
-};
+    const startEdit = (child:CradEntitie) => {
+      setTitle(child.task)
+      setMore(child.value)
+      setIsEdit(true)
+      setId(child.id)
+      setSaveOrEdit("edit")
+    }
+    return(<>
+    <Cards onChange={getList} startEdit={startEdit}>{list}</Cards>
+    <input placeholder="enter title" value={title} onChange={(e)=>setTitle(e.target.value)}></input >
+    <input placeholder="enter more" value={more} onChange={(e)=>setMore(e.target.value)}></input >
+    <button onClick={handleSave}>{saveOrEdit}</button>
+    </>)
+}

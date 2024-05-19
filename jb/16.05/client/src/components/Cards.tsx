@@ -5,12 +5,13 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 interface cardsProps{
     children : CradEntitie[];
-    onChange : ()=> void
+    onChange : ()=> void;
+    startEdit : (child:CradEntitie)=>void
 }
 export const  Cards = (props:cardsProps) => {
-const {children, onChange} = props
+const {children, onChange,startEdit} = props
 
-const handleDelete = (id:number)=>{
+const handleDelete = (id:string)=>{
     const raw = "";
 
     const requestOptions = {
@@ -26,6 +27,9 @@ const handleDelete = (id:number)=>{
 
 }
 
+
+
+
 return(<>
 <Row gutter={16}>
         {children.map((child,index)=>(
@@ -33,7 +37,7 @@ return(<>
             <AntdCard title={child.task} bordered={false}
                   actions={[
                     <DeleteOutlined key="delete" onClick={()=>handleDelete(child.id)}/>,
-                    <EditOutlined key="edit" />,
+                    <EditOutlined key="edit" onClick={()=>startEdit(child)}/>,
                   ]}>{child.value}</AntdCard>
            </Col>
         ))}

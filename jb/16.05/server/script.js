@@ -25,16 +25,21 @@ app.get('/todo', async (req, res) => {
 
 app.post("/todo", async(req,res)=>{
     let toDoList = await getListFromFile()
+    const idExists = toDoList.some((item) => item.id === req.body.id);
+    if (!idExists) {
     toDoList.push(req.body)
     fs.writeFileSync('data.json', JSON.stringify(toDoList) )
     res.send(toDoList)
-})
+    }  else {
+      res.status(400).send({ message: "ID already exists" });
+
+}})
 
 app.patch("/todo/:id", async(req,res)=>{
   let toDoList = await getListFromFile()
   let id = req.params.id
-let item = toDoList.find((item)=>item.id === +id)
-let newList = toDoList.filter((item)=>item.id !== +id);
+let item = toDoList.find((item)=>item.id === id)
+let newList = toDoList.filter((item)=>item.id !== id);
 let newItem = {...item , ...req.body}
 newList.push(newItem)
 fs.writeFileSync("data.json",JSON.stringify(newList))
@@ -44,7 +49,7 @@ res.send(toDoList)
 app.delete('/todo/:id',async(req,res)=>{
   let toDoList = await getListFromFile()
   let id = req.params.id
-  let newList = toDoList.filter((item)=>item.id !== +id)
+  let newList = toDoList.filter((item)=>item.id !== id)
   fs.writeFileSync("data.json",JSON.stringify(newList))
   res.send(newList)
 })
