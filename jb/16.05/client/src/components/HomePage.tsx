@@ -44,7 +44,7 @@ const [saveOrEdit ,setSaveOrEdit] = useState("save")
       
       fetch("http://localhost:3000/todo", requestOptions)
         .then((response) => response.text())
-        .then((result) =>{ console.log(result);   getList()})
+        .then((result) =>{ console.log(result);   getList(); eraseInputs()})
         .catch((error) => console.error(error));
      
   } else {handleEdit()}}
@@ -68,7 +68,7 @@ const [saveOrEdit ,setSaveOrEdit] = useState("save")
     
     fetch(`http://localhost:3000/todo/${id}`, requestOptions)
       .then((response) => response.json())
-      .then((result) => {console.log(result); getList() ;setIsEdit(false);setSaveOrEdit("save")})
+      .then((result) => {console.log(result); getList() ;setIsEdit(false);setSaveOrEdit("save") ;eraseInputs()})
       .catch((error) => console.error(error));
     }
     
@@ -81,10 +81,16 @@ const [saveOrEdit ,setSaveOrEdit] = useState("save")
       setId(child.id)
       setSaveOrEdit("edit")
     }
-    return(<>
+const eraseInputs = () =>{
+ setMore("")
+setTitle("")
+}
+
+return(<>
     <Cards onChange={getList} startEdit={startEdit}>{list}</Cards>
     <input placeholder="enter title" value={title} onChange={(e)=>setTitle(e.target.value)}></input >
     <input placeholder="enter more" value={more} onChange={(e)=>setMore(e.target.value)}></input >
     <button onClick={handleSave}>{saveOrEdit}</button>
     </>)
 }
+
