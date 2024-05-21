@@ -1,18 +1,49 @@
 const express = require("express"),
  router = express.Router();
   const fs = require("fs");
+  const  _ = require('lodash');
 
-const getAllDogsFromFile =async ()=>{
+const getAllAnimalsFromFile =async ()=>{
     let file = await fs.readFileSync('data/dogs.json').toString() 
     return JSON.parse(file)
 }
 
+const writeToFile = (data) => {
+fs.writeFileSync("data/dogs.json",JSON.stringify(data))
+}
+
+const getArrayWithoutID = (allAnimals,req) =>{
+ return _.filter(allAnimals, (animal) => animal.id !== +req.params.id)
+}
 
 router.get('/', async(_, res)=>{
-let dogs = await getAllDogsFromFile()
-res.send(dogs)
+const allAnimals = await getAllAnimalsFromFile()
+res.send(allAnimals)
 })  
 
-router.post("/")
+router.post('/', async(req, res)=>{
+  let allAnimals = await getAllAnimalsFromFile()
+  const newAnimal = req.body
+  allAnimals.push(newAnimal)
+writeToFile(allAnimals)
+res.send(allAnimals)
+})
+
+router.patch('/:id', async(req,res)=>{
+  let allAnimals = await getAllAnimalsFromFile()
+  let animalToCHange = _.find(allAnimals, (animal)=> animal.id === +req.params.id)
+let newArray = getArrayWithoutID(allAnimals,req)
+let animalObject = {...animalToCHange, ...req.body}
+newArray.push(animalObject)
+writeToFile(newArray)
+res.send(newArray)
+})
+
+router.delete('/:id', async(req,res)=>{
+  let allAnimals = await getAllAnimalsFromFile()
+  let newArray = getArrayWithoutID(allAnimals,req)
+writeToFile(newArray)
+res.send(newArray)
+})
 
 module.exports = router
