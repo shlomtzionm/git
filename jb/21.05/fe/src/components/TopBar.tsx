@@ -5,9 +5,19 @@ import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@mui/material';
+// import {  useState } from 'react';
+
+
+
 
 export const TopBar = () =>{
+
+  // const [isDogs,setIsDogs]=useState(true)
+
+  
     return (<>
+
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -21,11 +31,13 @@ export const TopBar = () =>{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          adopt 
+            adopt
           </Typography>
-         
+          <Button color="inherit" onClick={()=>setIsDogs(true)}>cats</Button>
+          <Button color="inherit" onClick={()=>setIsDogs(false)}>dogs</Button>
         </Toolbar>
       </AppBar>
     </Box>
+    
     </>)
 }

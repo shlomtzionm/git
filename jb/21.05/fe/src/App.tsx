@@ -1,13 +1,15 @@
 
-import { HomePage } from './HomePage'
-import { Layout } from './components/Layout'
+import { HomePage } from './components/HomePage'
+import { TopBar } from './components/TopBar'
+
 
 function App() {
 
 
   return (
     <>
-    <Layout><HomePage/></Layout>
+    <TopBar/>
+   <HomePage/>
 
     </>
   )
