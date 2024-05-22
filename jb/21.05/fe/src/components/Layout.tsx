@@ -7,14 +7,15 @@ interface layoutProps{
 }
 const StyledLayout = styled.div`
 whidth :100vh;
-margin:0 
+margin:0; 
+height:100vh
    `
 export const Layout = (props: layoutProps)=>{
 const {children} = props
 
  
     return(<>
-    <StyledLayout>
+    <StyledLayout >
     <TopBar />
     {children}
     </StyledLayout>

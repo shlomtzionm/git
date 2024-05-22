@@ -27,11 +27,9 @@ export const HomePage = () => {
 
   return (
     <>
-{data.map((item)=>{
-  <Card>{item}</Card>
-})}
- 
-    
-    </>
+    {data.map(item => (
+      <Card>{item}</Card>
+    ))}
+  </>
   );
 }

@@ -1,7 +1,8 @@
-// import Card from '@mui/joy/Card';
+
+import { CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import {CardEntetie } from './enteties/card';
-// import { CardOverflow } from '@mui/joy';
-// import { CardContent, Typography } from '@mui/material';
+import {Card as MuiCard} from '@mui/material';
+
 
 interface cardsProps{
     children: CardEntetie;
@@ -9,8 +10,26 @@ interface cardsProps{
 export const Card = (props:cardsProps)=>{
     const {children} = props
     return(<>
-
-     <h2>{children.name}</h2>
+  <MuiCard sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {children.id}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        {children.id}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </MuiCard>
 
     </>)
 }
