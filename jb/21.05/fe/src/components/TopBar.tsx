@@ -5,17 +5,15 @@ import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Button } from '@mui/material';
-// import {  useState } from 'react';
-
-
-
+import { Button  as MuiButton} from '@mui/material';
+import { changeIsDog } from '../features/isDogSlice';
+import { useDispatch } from 'react-redux'
 
 export const TopBar = () =>{
 
-  // const [isDogs,setIsDogs]=useState(true)
-
-  
+ 
+  const dispatch = useDispatch()
+ 
     return (<>
 
     <Box sx={{ flexGrow: 1 }}>
@@ -33,8 +31,8 @@ export const TopBar = () =>{
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             adopt
           </Typography>
-          <Button color="inherit" onClick={()=>setIsDogs(true)}>cats</Button>
-          <Button color="inherit" onClick={()=>setIsDogs(false)}>dogs</Button>
+          <MuiButton color="inherit" onClick={()=>dispatch(changeIsDog(false))}>cats</MuiButton>
+          <MuiButton color="inherit" onClick={()=>dispatch(changeIsDog(true))}>dogs</MuiButton>
         </Toolbar>
       </AppBar>
     </Box>

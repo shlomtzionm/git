@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 
@@ -14,8 +15,8 @@ export const isDogSlice = createSlice({
     name:"isDog",
     initialState,
     reducers:{
-        changeIsDog:(state)=>{
-            state.isDog = !state.isDog
+        changeIsDog:(state, action: PayloadAction<boolean>)=>{
+            state.isDog = action.payload
         }
     }
 })
@@ -25,3 +26,5 @@ export const { changeIsDog } = isDogSlice.actions
 
 export const selectCount = (state: RootState) => state.isDog
 export default isDogSlice.reducer
+
+

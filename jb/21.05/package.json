@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
     "lodash": "^4.17.21",
     "styled-components": "^6.1.11"
   }

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import isDogReducer from './features/isDogSlice'
 
 export const store = configureStore({
     reducer: {

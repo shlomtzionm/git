@@ -1,5 +1,6 @@
 export interface CardEntetie{
     id:number,
     name: string,
-    description:string
+    description:string, 
+    img :string
 }
