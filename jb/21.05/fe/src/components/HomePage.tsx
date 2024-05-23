@@ -32,14 +32,13 @@ const GetData=()=> {   const myHeaders = new Headers();
       .then((result) => {console.log(result); setData(result)})
       .catch((error) => console.error(error));
     }
-
     GetData();
   }, [isDog]); 
 
   return (
     <>
     {data.map(item => (
-      <Card key={item.id}>{item}</Card>
+      <Card setData={setData} key={item.id}>{item}</Card>
     ))}
   </>
   );
