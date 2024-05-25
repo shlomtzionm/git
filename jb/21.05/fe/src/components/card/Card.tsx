@@ -1,65 +1,83 @@
-
+import "./card.css"
 import { CardMedia, CardContent, Typography, CardActions } from '@mui/material';
 import {CardEntities } from '../../entities/card.ts';
 import {Card as MuiCard} from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store.ts';
+import { useState } from "react";
+import FormDialog from "../modal/Modal.tsx";
 
 
 interface cardsProps{
     children: CardEntities;
-    setData : (res:[])=> void
+    setData : (res:CardEntities[])=> void
 }
 
-
-
-
 export const Card = (props:cardsProps)=>{
+
+  const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+  };
+
     const {children,setData} = props
     const isDog = useSelector((state: RootState) => state.isDog)
-    const deletePet=()=> {   const myHeaders = new Headers();
+
+  
+
+    const deletePet=()=> {  
+       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       
       const requestOptions = {
         method: "DELETE",
         headers: myHeaders,
         redirect: "follow",
-        body:{
-          "id":2
-        }
-      };
+        body:""
+       };
       let url = ""
     
-      if(isDog.isDog === true){
-        url = "http://localhost:3000/api/dogs" }
-         else { url =  "http://localhost:3000/api/cats" } 
+      if(isDog.isDog === "dogs"){
+        url = `http://localhost:3000/api/dogs/${children.id}` }
+         else if(isDog.isDog === "cats") {
+           url =  `http://localhost:3000/api/cats/${children.id}` } 
       
       fetch(url, requestOptions)
         .then((response) => response.json())
-        .then((result) => {console.log(result); setData(result)})
+        .then((result) => {setData(result)})
         .catch((error) => console.error(error));
-      }
+      
+     }
 
+    
+  
     return(<>
-  <MuiCard sx={{ maxWidth: 345 }}>
+  <MuiCard  sx={{ maxWidth: 345 ,}} >
       <CardMedia
         component="img"
         alt="pic of dog"
         height="200"
         src= {children.img}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {children.name}
+      <CardContent >
+        <Typography gutterBottom variant="h5" component="div" >
+         {children.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" >
         {children.description}
         </Typography>
       </CardContent>
       <CardActions>
-      <button onClick={deletePet}>delete</button>
+      <button  onClick={deletePet} className="card">delete</button>
+      <button onClick={handleClickOpen} className="card">edit</button>
+
       </CardActions>
     </MuiCard>
+<FormDialog setData={setData} open={open} handleClose={handleClose} data={children} />
 
     </>)
 }

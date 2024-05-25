@@ -12,9 +12,11 @@ function App() {
   return (
     <>
     <Provider store={store}>
+      <div className='appContainer'>
     <TopBar/>
    <HomePage/>
    <Footer/>
+   </div>
    </Provider>
     </>
   )

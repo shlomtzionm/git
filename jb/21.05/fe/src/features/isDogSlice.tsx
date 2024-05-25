@@ -4,22 +4,24 @@ import { RootState } from '../store'
 
 
 interface IsDogState{
-    isDog : boolean
+    isDog : string,
+
 }
 
 const initialState: IsDogState = {
-    isDog : true
+    isDog : "home page",
+
 }
 
 export const isDogSlice = createSlice({
     name:"isDog",
     initialState,
     reducers:{
-        changeIsDog:(state, action: PayloadAction<boolean>)=>{
+        changeIsDog:(state, action: PayloadAction<string>)=>{
             state.isDog = action.payload
-        }
-    }
-})
+        },
+    } 
+   } )
 
 export const { changeIsDog } = isDogSlice.actions
 

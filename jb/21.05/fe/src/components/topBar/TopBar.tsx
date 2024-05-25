@@ -24,9 +24,9 @@ export const TopBar = () =>{
           </button>
          <img src={logo} className='logo' />
          <div className='buttons'>
-                  <button className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog(false))}>cats</button>
-          <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog(true))}>dogs</button>
-          <button  className='topBarButton' color="inherit" >home page</button>
+                  <button className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("cats"))}>cats</button>
+          <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("dogs"))}>dogs</button>
+          <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("home page"))}>home page</button>
           </div>
         </Toolbar>
       </AppBar>

@@ -13,7 +13,8 @@ export const GetPets = () => {
   const isDog = useSelector((state: RootState) => state.isDog)
   
   useEffect(() => {
-const GetData=()=> {   const myHeaders = new Headers();
+  
+const getData=()=> {   const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
     const requestOptions = {
@@ -23,17 +24,18 @@ const GetData=()=> {   const myHeaders = new Headers();
     };
     let url = ""
 
-    if(isDog.isDog === true){
+    if(isDog.isDog === "dogs"){
       url = "http://localhost:3000/api/dogs" }
-       else { url =  "http://localhost:3000/api/cats" } 
+       else if(isDog.isDog === "cats") {
+         url =  "http://localhost:3000/api/cats" } 
     
     fetch(url, requestOptions)
       .then((response) => response.json())
       .then((result) => {console.log(result); setData(result)})
       .catch((error) => console.error(error));
     }
-    GetData();
-  }, [isDog]); 
+    getData();
+  }, [isDog,]); 
 
   return (
     <>

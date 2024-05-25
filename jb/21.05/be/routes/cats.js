@@ -1,6 +1,7 @@
 const express = require("express"),
  router = express.Router();
   const fs = require("fs");
+  const  _ = require('lodash');
 
 const getAllAnimalsFromFile =async ()=>{
     let file = await fs.readFileSync('data/cats.json').toString() 
@@ -12,7 +13,7 @@ fs.writeFileSync("data/cats.json",JSON.stringify(data))
 }
 
 const getArrayWithoutID = (allAnimals,req) =>{
- return allAnimals.filter((animal)=>animal.id !== +req.params.id)
+ return _.filter(allAnimals, (animal) => animal.id !== +req.params.id)
 }
 
 router.get('/', async(_, res)=>{
@@ -30,8 +31,8 @@ res.send(allAnimals)
 
 router.patch('/:id', async(req,res)=>{
   let allAnimals = await getAllAnimalsFromFile()
-  let animalToCHange = allAnimals.find((animal)=> animal.id === +req.params.id)
-let newArray = getArrayWithoutID(allAnimals)
+  let animalToCHange = _.find(allAnimals, (animal)=> animal.id === +req.params.id)
+let newArray = getArrayWithoutID(allAnimals,req)
 let animalObject = {...animalToCHange, ...req.body}
 newArray.push(animalObject)
 writeToFile(newArray)
