@@ -1,0 +1,36 @@
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import MenuIcon from '@mui/icons-material/Menu';
+import { changeIsDog } from '../../features/isDogSlice';
+import { useDispatch } from 'react-redux'
+import  logo  from "../../logo.png"
+import "../topBar/topBar.css"
+
+export const TopBar = () =>{
+
+ 
+  const dispatch = useDispatch()
+ 
+    return (<>
+
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar className="stickyTopBar" style={{backgroundColor:"white"}}>
+        <Toolbar className='toolBar'>
+          <button
+          className='topBarButton'
+          >
+            <MenuIcon/>
+          </button>
+         <img src={logo} className='logo' />
+         <div className='buttons'>
+                  <button className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog(false))}>cats</button>
+          <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog(true))}>dogs</button>
+          <button  className='topBarButton' color="inherit" >home page</button>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </Box>
+    
+    </>)
+}

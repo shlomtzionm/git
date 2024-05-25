@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Card } from "./Card";
-import { CardEntetie } from "../enteties/card";
+import { Card } from "./card/Card";
+import { CardEntities } from "../entities/card";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 
 
 
-export const HomePage = () => {
-  const [data, setData] = useState<CardEntetie[]>([]);
+export const GetPets = () => {
+  const [data, setData] = useState<CardEntities[]>([]);
 
   const isDog = useSelector((state: RootState) => state.isDog)
   

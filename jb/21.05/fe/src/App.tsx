@@ -1,9 +1,10 @@
 
 import { Provider } from 'react-redux'
-import { HomePage } from './components/HomePage'
-import { TopBar } from './components/TopBar'
+import { HomePage } from './components/homePage/HomePage'
+import { TopBar } from './components/topBar/TopBar'
 import { store } from './store'
-
+import "../src/app.css"
+import { Footer } from './components/footer/Footer'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
     <Provider store={store}>
     <TopBar/>
    <HomePage/>
+   <Footer/>
    </Provider>
     </>
   )

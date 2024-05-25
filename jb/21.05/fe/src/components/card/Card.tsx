@@ -1,13 +1,13 @@
 
 import { CardMedia, CardContent, Typography, CardActions } from '@mui/material';
-import {CardEntetie } from '../enteties/card';
+import {CardEntities } from '../../entities/card.ts';
 import {Card as MuiCard} from '@mui/material';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '../../store.ts';
 
 
 interface cardsProps{
-    children: CardEntetie;
+    children: CardEntities;
     setData : (res:[])=> void
 }
 
