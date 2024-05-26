@@ -3,7 +3,8 @@ import isDogReducer from './features/isDogSlice'
 
 export const store = configureStore({
     reducer: {
-   isDog: isDogReducer },
+   isDog: isDogReducer 
+  },
   })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -2,10 +2,11 @@ import "./card.css"
 import { CardMedia, CardContent, Typography, CardActions } from '@mui/material';
 import {CardEntities } from '../../entities/card.ts';
 import {Card as MuiCard} from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store.ts';
 import { useState } from "react";
 import FormDialog from "../modal/Modal.tsx";
+import { addOrEdit } from "../../features/isDogSlice.tsx";
 
 
 interface cardsProps{
@@ -14,7 +15,7 @@ interface cardsProps{
 }
 
 export const Card = (props:cardsProps)=>{
-
+const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -73,7 +74,7 @@ export const Card = (props:cardsProps)=>{
       </CardContent>
       <CardActions>
       <button  onClick={deletePet} className="card">delete</button>
-      <button onClick={handleClickOpen} className="card">edit</button>
+      <button onClick={()=>{handleClickOpen(); dispatch(addOrEdit("edit"))}} className="card">edit</button>
 
       </CardActions>
     </MuiCard>
