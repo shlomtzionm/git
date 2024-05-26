@@ -28,8 +28,6 @@ export const TopBar = () =>{
                   <button className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("cats"))}>cats</button>
           <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("dogs"))}>dogs</button>
           <button  className='topBarButton' color="inherit" onClick={()=>dispatch(changeIsDog("home page"))}>home page</button>
-          <button  className='topBarButton' color="inherit" onClick={()=>dispatch(addOrEdit("add"))}>add</button>
-
           </div>
         </Toolbar>
       </AppBar>
