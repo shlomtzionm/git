@@ -16,6 +16,13 @@ const getArrayWithoutID = (allAnimals,req) =>{
  return _.filter(allAnimals, (animal) => animal.id !== +req.params.id)
 }
 
+const getNextId = async () => {
+  const dogs = await getAllAnimalsFromFile();
+  const ids = dogs.map(dog => dog.id);
+  const highestId = Math.max(...ids, 0); // Use 0 as a default to handle empty arrays
+  return highestId + 1;
+};
+
 router.get('/', async(_, res)=>{
 const allAnimals = await getAllAnimalsFromFile()
 res.send(allAnimals)
@@ -24,6 +31,7 @@ res.send(allAnimals)
 router.post('/', async(req, res)=>{
   let allAnimals = await getAllAnimalsFromFile()
   const newAnimal = req.body
+  newAnimal.id = await getNextId()
   allAnimals.push(newAnimal)
 writeToFile(allAnimals)
 res.send(allAnimals)
