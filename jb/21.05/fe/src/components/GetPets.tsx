@@ -3,6 +3,7 @@ import { Card } from "./card/Card";
 import { CardEntities } from "../entities/card";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { isOpen } from "../features/isDogSlice";
 
 
 
@@ -35,7 +36,7 @@ const getData=()=> {   const myHeaders = new Headers();
       .catch((error) => console.error(error));
     }
     getData();
-  }, [isDog,]); 
+  }, [isDog,isOpen]); 
 
   return (
     <>

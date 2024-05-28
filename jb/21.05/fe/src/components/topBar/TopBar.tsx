@@ -2,11 +2,10 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
-import { addOrEdit, changeIsDog } from '../../features/isDogSlice';
+import {  changeIsDog } from '../../features/isDogSlice';
 import { useDispatch } from 'react-redux'
 import  logo  from "../../logo.png"
 import "../topBar/topBar.css"
-import FormDialog from '../modal/Modal';
 
 export const TopBar = () =>{
 
@@ -32,7 +31,6 @@ export const TopBar = () =>{
         </Toolbar>
       </AppBar>
     </Box>
-    {/* <FormDialog setData={setData} open={open} handleClose={handleClose} data={children}></FormDialog> */}
-    
+  
     </>)
 }

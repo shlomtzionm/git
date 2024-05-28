@@ -1,22 +1,24 @@
 .addBtn {
-    background-color: transparent;
+
   color: black;
-  
-  padding: 10px 20px;
-  padding-bottom: 100px;
+  background-color: rgb(221, 200, 129);
+  width: 80px;
+  height: 25px;
   border-radius: 30px;
   text-transform: none;
   font-size: 16px;
   border: none;
-  position: relative;
+  margin-left: 50%;
+
   }
   
   .addBtn:hover {
-    color: #113151; /* Darker primary color */
-    background-color: transparent;
+    color: #000000; /* Darker primary color */
+  
+    background-color: rgb(221, 189, 129);
   }
   
   .addBtn:active {
-    color: #162e46; /* Lighter primary color */
-    background-color: transparent;
+    background-color: rgb(221, 189, 129);
+
   }
