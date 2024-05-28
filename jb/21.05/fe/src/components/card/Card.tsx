@@ -19,9 +19,7 @@ const dispatch = useDispatch()
 
     const {children,setData} = props
     const isDog:string = useSelector((state: RootState) => state.isDog.isDog)
-    // const isOpen:boolean = useSelector((state: RootState) => state.isDog.isOpen)
-
-  
+   
 
     const deletePet=()=> {  
        const myHeaders = new Headers();
@@ -50,12 +48,12 @@ const dispatch = useDispatch()
     
   
     return(<>
-  <MuiCard  sx={{ maxWidth: 345 }} className="petCard">
+  <MuiCard key={children.id} sx={{ maxWidth: 345 }} className="petCard">
       <CardMedia
         component="img"
         alt="pic of dog"
         height="200"
-        src= {children.img}
+        src= "../../cat"
       />
       <CardContent >
         <Typography gutterBottom variant="h5" component="div" >

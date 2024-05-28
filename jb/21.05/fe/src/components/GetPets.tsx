@@ -41,7 +41,7 @@ const getData=()=> {   const myHeaders = new Headers();
   return (
     <>
     {data.map(item => (
-      <Card setData={setData} key={item.id}>{item}</Card>
+      <Card setData={setData}>{item}</Card>
     ))}
   </>
   );
