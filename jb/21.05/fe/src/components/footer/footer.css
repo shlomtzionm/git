@@ -9,6 +9,6 @@
     padding-top: 25px;
     width: 110px;
     color: black;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: calc(50% + 10px);
+ 
   }

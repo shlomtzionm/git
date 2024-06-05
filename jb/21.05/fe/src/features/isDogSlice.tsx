@@ -5,13 +5,15 @@ import { RootState } from '../store'
 
 interface IsDogState{
     isDog : string,
-    addOrEdit: string
+    addOrEdit: string,
+    isOpen: boolean
 
 }
 
 const initialState: IsDogState = {
     isDog : "home page",
-addOrEdit : ""
+addOrEdit : "",
+isOpen: false
 }
 
 export const isDogSlice = createSlice({
@@ -23,11 +25,14 @@ export const isDogSlice = createSlice({
         },
         addOrEdit:(state, action:PayloadAction<string>)=>{
             state.addOrEdit = action.payload
+        },
+        isOpen:(state, action:PayloadAction<boolean>)=>{
+            state.isOpen = action.payload
         }
     } 
    } )
 
-export const { changeIsDog,addOrEdit } = isDogSlice.actions
+export const { changeIsDog,addOrEdit,isOpen } = isDogSlice.actions
 
 
 export const selectCount = (state: RootState) => state.isDog

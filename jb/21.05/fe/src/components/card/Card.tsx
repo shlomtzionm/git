@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store.ts';
 import FormDialog from "../modal/Modal.tsx";
 import { addOrEdit } from "../../features/isDogSlice.tsx";
-
+import { isOpen  as setIsOpen} from "../../features/isDogSlice"; 
 
 interface cardsProps{
     children: CardEntities;
@@ -18,9 +18,8 @@ const dispatch = useDispatch()
 
 
     const {children,setData} = props
-    const isDog = useSelector((state: RootState) => state.isDog)
-
-  
+    const isDog:string = useSelector((state: RootState) => state.isDog.isDog)
+   
 
     const deletePet=()=> {  
        const myHeaders = new Headers();
@@ -34,9 +33,9 @@ const dispatch = useDispatch()
        };
       let url = ""
     
-      if(isDog.isDog === "dogs"){
+      if(isDog === "dogs"){
         url = `http://localhost:3000/api/dogs/${children.id}` }
-         else if(isDog.isDog === "cats") {
+         else if(isDog === "cats") {
            url =  `http://localhost:3000/api/cats/${children.id}` } 
       
       fetch(url, requestOptions)
@@ -49,12 +48,12 @@ const dispatch = useDispatch()
     
   
     return(<>
-  <MuiCard  sx={{ maxWidth: 345 ,}} >
+  <MuiCard key={children.id} sx={{ maxWidth: 345 }} className="petCard">
       <CardMedia
         component="img"
         alt="pic of dog"
         height="200"
-        src= {children.img}
+        src= "../../cat"
       />
       <CardContent >
         <Typography gutterBottom variant="h5" component="div" >
@@ -65,12 +64,12 @@ const dispatch = useDispatch()
         </Typography>
       </CardContent>
       <CardActions>
-      <button  onClick={deletePet} className="card">delete</button>
-      <button onClick={()=>{setOpen(true); dispatch(addOrEdit("edit"))}} className="card">edit</button>
+      <button  onClick={deletePet} className="cardButton">delete</button>
+      <button onClick={()=>{dispatch(setIsOpen(true)); dispatch(addOrEdit("edit"))}} className="cardButton">edit</button>
 
       </CardActions>
     </MuiCard>
-<FormDialog setOpen={setOpen} setData={setData} data={children} />
+<FormDialog setData={setData} data={children} />
 
     </>)
 }

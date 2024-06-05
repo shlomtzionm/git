@@ -6,16 +6,23 @@ import { GetPets } from "../GetPets";
 import { AddPet } from "../addPet/AddPet";
 
 
+
 export const HomePage = () => {
   const isDog = useSelector((state: RootState) => state.isDog.isDog);
 
+
+ 
   let content;
 
   if (isDog === "home page") {
     content = (
       <>
         <WelcomePic />
-        <Numbers />
+    
+        <Numbers/>
+
+
+        
       </>
     );
   } else if (isDog === "dogs") {
@@ -29,6 +36,8 @@ export const HomePage = () => {
     <GetPets />
     </> 
   }
+
+ 
 
   return <>{content}</>;
 };

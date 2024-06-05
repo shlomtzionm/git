@@ -3,6 +3,7 @@ import { Card } from "./card/Card";
 import { CardEntities } from "../entities/card";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { isOpen } from "../features/isDogSlice";
 
 
 
@@ -35,12 +36,12 @@ const getData=()=> {   const myHeaders = new Headers();
       .catch((error) => console.error(error));
     }
     getData();
-  }, [isDog,]); 
+  }, [isDog,isOpen]); 
 
   return (
     <>
     {data.map(item => (
-      <Card setData={setData} key={item.id}>{item}</Card>
+      <Card setData={setData}>{item}</Card>
     ))}
   </>
   );
