@@ -1,17 +1,31 @@
-const colorArray = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF3'];
 
-function start() {
-    let arrayLength = colorArray.length - 1;
-        document.body.style.backgroundColor = colorArray[getRandomNumber(arrayLength)];
-            setTimeout(() => {
-                alert("Color was changed");
-            }, 0);
-        
-   
+
+const div = document.querySelector(".div")
+
+
+function generatePrimeNumberAfterDelayAsync  (min, max){
+return new Promise((resolve, reject)=>{
+ let newNum =getRandomInt(min,max) 
+ for (i = 2; i< Math.sqrt(newNum);i++){
+    if(newNum%i === 0 ){
+        resolve(newNum)
+    } else {
+        reject(new Error("number is prime"))
+        break
+    }
+ }
+    
+})
 }
 
-function getRandomNumber(max) {
-    return Math.floor(Math.random() * (max + 1));
+function button(){
+    const maxFromInput = document.querySelector(".max").value
+const minFromInput = document.querySelector(".min").value
+generatePrimeNumberAfterDelayAsync(+minFromInput,+maxFromInput)
+    .then((res)=>div.innerHTML = res)
+    .catch((err)=>{console.log(err.message)})
 }
 
-start();
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
