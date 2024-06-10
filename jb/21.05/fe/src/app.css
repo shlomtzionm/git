@@ -12,5 +12,8 @@
     margin: 0;
     padding: 0;
 
-
  } 
+
+ .div.MuiBox-root {
+flex-grow: 0
+ }

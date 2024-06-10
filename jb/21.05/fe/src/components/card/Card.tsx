@@ -67,6 +67,7 @@ const [imagex,setImage] = useState("")
   
   
     return(<>
+    <div className="cardContainer">
   <MuiCard key={children.id} sx={{ maxWidth: 345 }} className="petCard">
       <CardMedia
         component="img"
@@ -91,6 +92,6 @@ const [imagex,setImage] = useState("")
       </CardActions>
     </MuiCard>
 <FormDialog setData={setData} data={children} />
-
+</div>
     </>)
 }

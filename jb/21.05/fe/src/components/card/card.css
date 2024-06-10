@@ -33,3 +33,6 @@
   .petCard:hover {
     transform: translateY(-5px);
   }
+  .cardContainer{
+    width: 200px;
+  }

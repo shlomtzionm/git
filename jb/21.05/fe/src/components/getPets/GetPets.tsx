@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card } from "./card/Card";
-import { CardEntities } from "../entities/card";
+import { Card } from "../card/Card";
+import { CardEntities } from "../../entities/card";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import { isOpen } from "../features/isDogSlice";
-
+import { RootState } from "../../store";
+import { isOpen } from "../../features/isDogSlice";
+import "./getPets.css"
 
 
 
@@ -40,9 +40,12 @@ const getData=()=> {   const myHeaders = new Headers();
 
   return (
     <>
+    <div className="cardContainer">
     {data.map(item => (
       <Card setData={setData}>{item}</Card>
     ))}
+  </div>
+
   </>
   );
 }

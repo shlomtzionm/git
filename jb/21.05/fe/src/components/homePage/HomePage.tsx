@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Numbers } from "../numbers/Numbers";
 import { WelcomePic } from "../welcomePic/welcomePic";
 import { RootState } from "../../store";
-import { GetPets } from "../GetPets";
+import { GetPets } from "../getPets/GetPets";
 import { AddPet } from "../addPet/AddPet";
 
 
