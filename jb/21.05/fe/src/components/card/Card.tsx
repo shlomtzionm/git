@@ -7,6 +7,9 @@ import { RootState } from '../../store.ts';
 import FormDialog from "../modal/Modal.tsx";
 import { addOrEdit } from "../../features/isDogSlice.tsx";
 import { isOpen  as setIsOpen} from "../../features/isDogSlice"; 
+import { useState } from "react";
+import { useEffect } from 'react';
+
 
 interface cardsProps{
     children: CardEntities;
@@ -17,9 +20,15 @@ export const Card = (props:cardsProps)=>{
 const dispatch = useDispatch()
 
 
+const [imagex,setImage] = useState("")
+
     const {children,setData} = props
     const isDog:string = useSelector((state: RootState) => state.isDog.isDog)
    
+    useEffect(() => {
+      getImages();
+  }, []);
+    
 
     const deletePet=()=> {  
        const myHeaders = new Headers();
@@ -45,7 +54,17 @@ const dispatch = useDispatch()
       
      }
 
-    
+     const getImages = () => {
+      fetch("https://dog.ceo/api/breeds/image/random")
+      .then((res) => res.json())
+      .then((json) => {
+          setImage(json.message); 
+      })
+      .catch((error) => console.error(error));
+     
+  }
+
+  
   
     return(<>
   <MuiCard key={children.id} sx={{ maxWidth: 345 }} className="petCard">
@@ -53,9 +72,11 @@ const dispatch = useDispatch()
         component="img"
         alt="pic of dog"
         height="200"
-        src= "../../cat"
+        src = {imagex}
       />
+    
       <CardContent >
+      
         <Typography gutterBottom variant="h5" component="div" >
          {children.name}
         </Typography>
