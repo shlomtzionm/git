@@ -3,7 +3,6 @@ import { numbers } from "../../entities/number";
 import "./numbers.css"
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { Parallax, useParallax } from 'react-scroll-parallax';
 
 export const Numbers = ()=>{
 
@@ -30,12 +29,9 @@ fetch("http://localhost:3000/logs", requestOptions)
     getNumbers()
  },[isDog])
 
- const parallax = useParallax<HTMLDivElement>({
-   easing: 'easeOutQuad',
-   translateX: [-190, 190],
- });
+ 
     return(<>
-   <div className="numbersContainer" ref={parallax.ref}>
+   <div className="numbersContainer">
  <div className="dogs"><div>{data["/api/dogs"]}</div> people were intrusted in our dogs</div>
 
 <div><div>{data["/api/cats"]}</div> people were intrusted in our cats</div>
