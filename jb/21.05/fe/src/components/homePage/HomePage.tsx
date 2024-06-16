@@ -27,13 +27,15 @@ export const HomePage = () => {
     );
   } else if (isDog === "dogs") {
     content = <>
-    <AddPet kind="dog"/>
     <GetPets />
+    <AddPet kind="dog"/>
+
     </> 
   } else if(isDog === "cats"){
     content = <>
-    <AddPet kind="cat"/>
     <GetPets />
+    <AddPet kind="cat"/>
+
     </> 
   }
 

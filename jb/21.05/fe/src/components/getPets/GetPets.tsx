@@ -40,7 +40,7 @@ const getData=()=> {   const myHeaders = new Headers();
 
   return (
     <>
-    <div className="cardContainer">
+    <div className="cardsContainer">
     {data.map(item => (
       <Card setData={setData}>{item}</Card>
     ))}

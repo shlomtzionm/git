@@ -14,6 +14,8 @@
 
  } 
 
- .div.MuiBox-root {
-flex-grow: 0
- }
+ .div.MuiBox-root.css-i9gxme
+  {
+flex-grow: 0;
+width: 50px; 
+}
