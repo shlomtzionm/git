@@ -1,76 +1,66 @@
-const express = require('express');
-const { Client,LocalAuth } = require('whatsapp-web.js');
-const qrcode = require('qrcode');
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
 const fs = require('fs');
-const app = express();
-const port = 3000;
 
-let qrCodeUrl = ''; // Variable to store the QR code URL
+const SESSION_FILE_PATH = './data/session.json';
 
-const client = new Client({
-    webVersionCache: {
-      type: "remote",
-      remotePath:
-        "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
-        authStrategy: new LocalAuth({
-            clientId: "client-one" // A unique identifier for this client
-        })
-    },
-  });
+let client;
 
-client.on('qr', (qr) => {
-  
-    // Generate QR code URL
-    qrcode.toDataURL(qr, (err, url) => {
-        if (err) {
-            console.error('Error generating QR code', err);
-        } else {
-            qrCodeUrl = url;
-        }
+if (fs.existsSync(SESSION_FILE_PATH)) {
+    const sessionData = require(SESSION_FILE_PATH);
+    client = new Client({
+        session: sessionData,
+        puppeteer: {
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        },
+        webVersionCache: {
+            type: "remote",
+            remotePath: "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
+        },
     });
-  
-});
+} else {
+    client = new Client({
+        authStrategy: new LocalAuth({
+            dataPath: './data'
+        }),
+        webVersionCache: {
+            type: "remote",
+            remotePath: "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
+        },
+    });
+}
 
 client.on('ready', () => {
     console.log('Client is ready!');
 });
 
-// Listening to all incoming messages
-client.on('message', message => {
-    if (message.body === '!ping' && !message.fromMe) { // Check if the message is not from the bot itself
-        message.reply('pong');
-    }
+client.on('message_create', message => {
+    console.log(message.body);
 });
 
+client.on('message_create', message => {
+	
+		message.reply('pong');
+	}
+);
 
-client.on('message', async message => {
-    if (message.hasMedia) {
-        const media = await message.downloadMedia();
-        if (media.mimetype.includes('image')) {
-            // Save the image to a file
-            const fileName = `image_${Date.now()}.${media.mimetype.split('/')[1]}`;
-            const filePath = `image/${fileName}`; // Change the path as needed
-            fs.writeFileSync(filePath, media.data, 'base64');
-            console.log(`Image saved to ${filePath}`);
-        } else {
-            console.log('Received media is not an image');
-        }
-    } else {
-        console.log('Received message does not contain media');
-    }
+client.on('qr', qr => {
+    qrcode.generate(qr, { small: true });
 });
 
+client.on('authenticated', (session) => {
+    console.log('Authenticated!');
+    saveSession(session);
+});
 
 client.initialize();
 
-app.get('/api/qr', (req, res) => {
-    if (qrCodeUrl) {
-        res.send(`<img src="${qrCodeUrl}" />`);
-    } else {
-        res.send('QR code is not available yet. Please try again later.');
+function saveSession(session) {
+    try {
+        fs.writeFileSync(SESSION_FILE_PATH, JSON.stringify(session));
+        console.log('Session data saved');
+    } catch (error) {
+        console.error('Error saving session data:', error);
     }
-});
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+}
