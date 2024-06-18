@@ -8,6 +8,7 @@ import { userController } from "./5-controllers/user-controller"
 import expressFileUpload from "express-fileupload"
 import { fileSaver } from "uploaded-file-saver"
 import path from "path"
+import { employeeController } from "./5-controllers/employee-controllers"
 
 
 fileSaver.config(path.join(__dirname,"1-assets","images"))
@@ -20,6 +21,8 @@ server.use(securityMiddleware.preventXssAttack)
 
 server.use("/api",productController.router)
 server.use("/api",userController.router)
+server.use("/api",employeeController.router)
+
 
 
 server.use("*" ,errorMidDleware.routeNotFound)

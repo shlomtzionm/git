@@ -1,6 +1,6 @@
 import express, { Response, Request, NextFunction } from "express";
-import { productService } from "../4-services/productService";
-import { ProductModel } from "../3-models/productModel";
+import { productService } from "../4-services/product-service";
+import { ProductModel } from "../3-models/product-model";
 import { StatusCode } from "../3-models/enums";
 import { securityMiddleware } from "../6-middleware/securityMiddleware";
 import { fileSaver } from "uploaded-file-saver";

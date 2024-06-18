@@ -1,6 +1,6 @@
 import { OkPacketParams } from "mysql2";
 import { dal } from "../2-utils/dal";
-import { ProductModel } from "../3-models/productModel";
+import { ProductModel } from "../3-models/product-model";
 import { RecourseNotFoundError } from "../3-models/client-error";
 import { fileSaver } from "uploaded-file-saver";
 
