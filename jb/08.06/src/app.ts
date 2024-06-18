@@ -1,6 +1,6 @@
 import express,{Response} from "express"
 import { appConfig } from "./2-utils/app-config"
-import { productController } from "./5-controllers/productController"
+import { productController } from "./5-controllers/product-controller"
 import { logMiddleware } from "./6-middleware/logsMiddleware"
 import { securityMiddleware } from "./6-middleware/securityMiddleware"
 import { errorMidDleware } from "./6-middleware/errorsMiddleware"

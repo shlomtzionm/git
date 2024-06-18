@@ -11,16 +11,8 @@ class ProductController {
   public constructor() {
     this.router.get("/products", this.getAllProducts);
     this.router.get("/products/:id([0-9]+)", this.getOneProduct);
-    this.router.post(
-      "/products",
-      securityMiddleware.validateLogin,
-      this.addProduct
-    );
-    this.router.put(
-      "/products/:id([0-9]+)",
-      securityMiddleware.validateLogin,
-      this.updateProduct
-    );
+    this.router.post( "/products",securityMiddleware.validateLogin,this.addProduct);
+    this.router.put( "/routs/:id([0-9]+)", securityMiddleware.validateLogin, this.updateProduct)
     this.router.delete( "/products/:id([0-9]+)",securityMiddleware.validateAdmin,this.deleteProduct);
     this.router.get("/products/images/:imageName", this.getProductImages);
   }

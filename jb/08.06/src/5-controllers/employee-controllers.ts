@@ -2,25 +2,22 @@ import express, { Response, Request, NextFunction } from "express";
 import { employeeServices } from "../4-services/employee-services";
 import { EmployeeModel } from "../3-models/employee-model";
 import { StatusCode } from "../3-models/enums";
+import { securityMiddleware } from "../6-middleware/securityMiddleware";
 
 class EmployeeController {
   public readonly router = express.Router();
 
   public constructor() {
-    this.router.get("/employees", this.getAllEmployeees);
-    this.router.get("/employees/:id([0-9]+)", this.getOneEmployeees);
-    this.router.post("/employees", this.addEmployee);
-    this.router.post("/employees/:id([0-9]+)", this.updateEmployee);
-    this.router.delete("/employees/:id([0-9]+)", this.deleteEmployee);
+    this.router.get("/employees", this.getAllEmployees);
+    this.router.get("/employees/:id([0-9]+)", this.getOneEmployees);
+    this.router.post("/employees",securityMiddleware.validateAdmin, this.addEmployee);
+    this.router.post("/employees/:id([0-9]+)",securityMiddleware.validateAdmin, this.updateEmployee);
+    this.router.delete("/employees/:id([0-9]+)",securityMiddleware.validateAdmin, this.deleteEmployee);
 
 
   }
 
-  private async getAllEmployeees(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  private async getAllEmployees(req: Request,res: Response, next: NextFunction ) {
     try {
       const employees = await employeeServices.getAllEmployees();
       res.json(employees);
@@ -29,11 +26,7 @@ class EmployeeController {
     }
   }
 
-  private async getOneEmployeees(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  private async getOneEmployees(req: Request, res: Response, next: NextFunction  ) {
     try {
         const id = +req.params.id
       const employee = await employeeServices.getOneEmployee(id);

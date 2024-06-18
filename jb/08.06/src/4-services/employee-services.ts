@@ -1,6 +1,7 @@
 import { OkPacketParams } from "mysql2"
 import { dal } from "../2-utils/dal"
 import { EmployeeModel } from "../3-models/employee-model"
+import { RecourseNotFoundError } from "../3-models/client-error"
 
 class EmployeeServices{
     public async getAllEmployees(){
@@ -13,12 +14,17 @@ return employees
         const sql = "select * from employees where id = ?"
         const employees = await dal.execute(sql,[id])
         const employee = employees[0]
+
+        if(!employee){
+          throw new RecourseNotFoundError(id)
+        }
         return employee
             }
         
       
         
   public async addEmployee(employee: EmployeeModel) {
+    employee.validate()
     const sql = "insert into employees(firstName, lastName, birthDate) values(?,?,?)";
  const info :OkPacketParams = await dal.execute(sql, [
       employee.firstName,
@@ -32,6 +38,7 @@ const addedEmployee = await this.getOneEmployee(info.insertId)
           
 
   public async updateEmployee(employee: EmployeeModel) {
+    employee.validate()
     const sql = "UPDATE employees SET firstName = ?, lastName = ?, birthDate = ? WHERE id = ?";
     const info: OkPacketParams = await dal.execute(sql, [
       employee.firstName,
@@ -39,6 +46,10 @@ const addedEmployee = await this.getOneEmployee(info.insertId)
       employee.birthDate,
       employee.id
     ]);
+
+    if (info.affectedRows === 0){
+      throw new RecourseNotFoundError(employee.id)
+    }
 return info
 }
 
@@ -46,6 +57,11 @@ return info
 public async deleteEmployee(id: number) {
     const sql = "DELETE FROM employees WHERE id = ?";
     const info = await dal.execute(sql, [id]);
+
+    if (info.affectedRows === 0){
+      throw new RecourseNotFoundError(id)
+    }
+
     return info
   }
 }

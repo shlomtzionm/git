@@ -22,7 +22,7 @@ class UserService {
     }
 
     public async login(credentials :CredentialsModel ){
-        //VALIDATION
+        
 
         const sql = " select * from users where email = ? and password = ? "
 const values = [credentials.email, credentials.password]
