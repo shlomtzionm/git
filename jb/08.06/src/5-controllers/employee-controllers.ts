@@ -3,6 +3,7 @@ import { employeeServices } from "../4-services/employee-services";
 import { EmployeeModel } from "../3-models/employee-model";
 import { StatusCode } from "../3-models/enums";
 import { securityMiddleware } from "../6-middleware/securityMiddleware";
+import { fileSaver } from "uploaded-file-saver";
 
 class EmployeeController {
   public readonly router = express.Router();
@@ -68,6 +69,24 @@ class EmployeeController {
       next(err);
     }
   }
+
+  private async getEmployeeImage(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const imageName = req.params.imageName;
+      const imagePath = fileSaver.getFilePath(imageName, true);
+      res.sendFile(imagePath);
+    } catch (err: any) {
+      next(err);
+    }
+  }
+
+
 }
+
+
 
 export const employeeController = new EmployeeController();

@@ -1,3 +1,4 @@
+import { UploadedFile } from "express-fileupload";
 import { ValidationError } from "./client-error";
 
 export class EmployeeModel {
@@ -5,12 +6,14 @@ export class EmployeeModel {
   public firstName: string;
   public lastName: string;
   public birthDate: Date;
+  public image: UploadedFile
 
   constructor(employee: EmployeeModel) {
     this.id = employee.id;
     this.firstName = employee.firstName;
     this.lastName = employee.lastName;
     this.birthDate = employee.birthDate;
+    this.image = employee.image
   }
 
   public validate() {

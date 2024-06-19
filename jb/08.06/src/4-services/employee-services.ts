@@ -2,16 +2,17 @@ import { OkPacketParams } from "mysql2"
 import { dal } from "../2-utils/dal"
 import { EmployeeModel } from "../3-models/employee-model"
 import { RecourseNotFoundError } from "../3-models/client-error"
+import { fileSaver } from "uploaded-file-saver"
 
 class EmployeeServices{
     public async getAllEmployees(){
-const sql = "select * from employees"
+const sql = "select *, concat('http://localhost:3000/api/employees/images/', imageName) as imageUrl from employees"
 const employees = await dal.execute(sql)
 return employees
     }
 
     public async getOneEmployee(id:number){
-        const sql = "select * from employees where id = ?"
+        const sql = "select *, concat('http://localhost:3000/api/employees/images/', imageName) as imageUrl from employees where id = ?"
         const employees = await dal.execute(sql,[id])
         const employee = employees[0]
 
@@ -25,11 +26,14 @@ return employees
         
   public async addEmployee(employee: EmployeeModel) {
     employee.validate()
-    const sql = "insert into employees(firstName, lastName, birthDate) values(?,?,?)";
+    const imageName = await fileSaver.add(employee.image)
+    const sql = "insert into employees(firstName, lastName, birthDate, imageName) values(?,?,?,?)";
  const info :OkPacketParams = await dal.execute(sql, [
       employee.firstName,
       employee.lastName,
       employee.birthDate,
+      imageName
+      
     ]);
 const addedEmployee = await this.getOneEmployee(info.insertId)
     return addedEmployee;
