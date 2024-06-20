@@ -1,0 +1,12 @@
+html, body, #root{
+margin: 0;
+padding: 0;
+height: 100%;
+text-align: center;
+background-image: linear-gradient(rgb(248, 177, 189), rgb(230, 135, 214));
+}
+
+
+a{
+  color: blue;
+}
