@@ -7,14 +7,14 @@ import { fileSaver } from "uploaded-file-saver";
 class ProductService {
   public async getAllProducts() {
     const sql =
-      "select *, concat('http://localhost:3000/api/products/images/', imageName) as imageUrl from products";
+      "select *, concat('http://localhost:4000/api/products/images/', imageName) as imageUrl from products";
     const products = await dal.execute(sql);
     return products;
   }
 
   public async getOneProduct(id: Number) {
     const sql =
-      "select *, concat('http://localhost:3000/api/products/images/', imageName) as imageUrl from products where id = ?";
+      "select *, concat('http://localhost:4000/api/products/images/', imageName) as imageUrl from products where id = ?";
     const products = await dal.execute(sql, [id]);
     const product = products[0];
 

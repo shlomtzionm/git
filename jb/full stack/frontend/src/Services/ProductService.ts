@@ -5,7 +5,7 @@ import { appConfig } from "../Utils/AppConfig";
 class ProductService {
 	
     public async getAllProducts(){
-     const response = await axios.get<ProductModel[]>(appConfig.protectsUrl)
+     const response = await axios.get<ProductModel[]>(appConfig.productsUrl)
      const products = response.data
      return products
     }

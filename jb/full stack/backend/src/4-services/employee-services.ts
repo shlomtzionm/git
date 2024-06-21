@@ -6,13 +6,13 @@ import { fileSaver } from "uploaded-file-saver"
 
 class EmployeeServices{
     public async getAllEmployees(){
-const sql = "select *, concat('http://localhost:3000/api/employees/images/', imageName) as imageUrl from employees"
+const sql = "select *, concat('http://localhost:4000/api/employees/images/', imageName) as imageUrl from employees"
 const employees = await dal.execute(sql)
 return employees
     }
 
     public async getOneEmployee(id:number){
-        const sql = "select *, concat('http://localhost:3000/api/employees/images/', imageName) as imageUrl from employees where id = ?"
+        const sql = "select *, concat('http://localhost:4000/api/employees/images/', imageName) as imageUrl from employees where id = ?"
         const employees = await dal.execute(sql,[id])
         const employee = employees[0]
 

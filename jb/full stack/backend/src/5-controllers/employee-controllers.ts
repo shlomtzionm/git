@@ -77,7 +77,7 @@ class EmployeeController {
   ) {
     try {
       const imageName = req.params.imageName;
-      const imagePath = fileSaver.getFilePath(imageName, true);
+      const imagePath = fileSaver.getFilePath(imageName,false);
       res.sendFile(imagePath);
     } catch (err: any) {
       next(err);
