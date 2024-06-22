@@ -1,19 +1,16 @@
 import  express  from "express"
 import { appConfig } from "./2-utils/app-config"
+import cors from "cors"
+import { productController } from "./5-controllers/product-controller"
 
 
 
 const server = express()
+server.use(cors())
 server.use(express.json())
 
 
-
-
-server.get("/", (req,res)=>{
-  res.send("hello")
-})
-
-// server.use('/api/dogs',)
+server.use('/api', productController.router)
 // server.use('/api/cats',)
 
 server.listen(appConfig.port, () => {
