@@ -1,8 +1,0 @@
-2024/06/09-15:40:41.436 41f4 Reusing MANIFEST C:\Users\User\Desktop\shlomtzion\git\watsapp\be\data\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/06/09-15:40:41.437 41f4 Recovering log #3
-2024/06/09-15:40:41.437 41f4 Level-0 table #3: started
-2024/06/09-15:40:41.442 41f4 Level-0 table #3: 22454 bytes OK
-2024/06/09-15:40:41.442 41f4 Recovering log #4
-2024/06/09-15:40:41.442 41f4 Reusing old log C:\Users\User\Desktop\shlomtzion\git\watsapp\be\data\session\Default\Local Storage\leveldb/000004.log 
-2024/06/09-15:40:41.446 41f4 Delete type=0 #3
-2024/06/09-15:40:41.446 41f4 Delete type=2 #5

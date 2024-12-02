@@ -37,9 +37,6 @@ function pushToFav(favJokes, jokeId) {
     favJokes.push(jokeId);
     console.log(favJokes);
 }
-let fromFav = document.querySelector("#fav");
-fromFav.addEventListener("click", function () {
-});
 function showJoke(theJoke, jokeContainer) {
     if (theJoke.joke) {
         jokeContainer.innerText = theJoke.joke;
